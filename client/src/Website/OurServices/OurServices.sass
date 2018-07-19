@@ -1,0 +1,59 @@
+.service-wrapper
+  margin-bottom: 10rem
+  padding: 3rem 0 5rem 0
+  @media (max-width: 599px)
+    margin-bottom: 3rem
+  h2
+    color: #553492
+    letter-spacing: 2px
+    padding-bottom: 2rem
+    font-style: italic
+    @media (min-width: 960px)
+      padding-bottom: 6rem
+  .service-item
+    flex-basis: 32%
+    padding: 1.5rem
+    box-shadow: 10px 10px #868686
+    background: #553492
+    h3
+      letter-spacing: 1px
+      margin-bottom: 1rem
+    p
+      line-height: 1.5;
+      margin-bottom: 2rem
+    i
+      font-size: 3rem
+      margin-bottom: 1rem
+    a
+      display: inline-block
+      background: #8460c3
+      color: #fff
+      padding: .6rem 1.6rem
+      box-shadow: 0 0 0 2px #fff
+      transition: all 200ms ease-out
+      border: 3px solid transparent
+      &:hover
+        border-color: #8460c3
+        background: #fff
+        color: #8460c3
+        transform: translateY(-3px)
+
+@media (min-width: 786px)
+  #services
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+
+@media (min-width: 960px)
+  .service-item:nth-child(2)
+    transform: translateY(-50px)
+
+@media (max-width: 959px)
+  .service-wrapper
+    padding-bottom: 1rem
+    .service-item
+      margin-bottom: 2rem
+      flex-basis: 48%
+      &:nth-child(2)
+        order: -1
+        flex-basis: 100%

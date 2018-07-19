@@ -1,0 +1,71 @@
+#streamers-side-bar ul::-webkit-scrollbar
+  width: .5em
+#streamers-side-bar ul::-webkit-scrollbar-thumb
+  background: #432751
+  border-radius: 20px
+  border: 1px solid #34293a
+
+#streamers-side-bar
+  position: relative
+  cursor: pointer
+  border-right: 1px solid #ff008d6b
+  flex-basis: 300px
+  .load-more-btn
+    cursor: pointer
+    font-weight: bold
+    height: 60px
+    width: 100%
+    color: #c282a4
+    font-size: 2rem
+    background: #271832
+    border: 3px solid #ff008d
+    text-transform: uppercase
+    &:hover
+      background: #171421
+  ul
+    height: calc(100vh - (57.38px + 60px)
+    overflow-y: auto
+    overflow-x: hidden
+    li
+      cursor: pointer
+      border-bottom: 1px solid #ff008d6b
+      &:nth-child(odd)
+        background: #261731
+      &:nth-child(even)
+        background: #2d1c39
+      &:hover
+        background: #342043
+        .name
+          color: #fff !important
+        .game
+          color: #acacac !important
+      .streamer-wrapper
+        position: relative
+        display: flex
+        padding: .5rem 0 .5rem .5rem
+        i
+          position: absolute
+          top: 14px
+          right: 10px
+          color: #3dff00
+          font-size: .5rem
+        .info
+          padding-left: .5rem
+          display: flex
+          flex-direction: column
+          flex: 1
+          .name
+            color: #acacac
+            font-weight: bold
+            letter-spacing: 1px
+            margin-bottom: .3rem
+          .game
+            font-weight: 400
+            font-size: .8rem
+            color: #777777
+        .popup
+          position: absolute
+          top: 0
+          left: 300px
+          width: 300px
+          height: 100%

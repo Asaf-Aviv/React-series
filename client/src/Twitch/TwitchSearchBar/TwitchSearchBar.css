@@ -1,0 +1,40 @@
+.searchbar-wrapper {
+  border-bottom: 1px solid #ff008d6b;
+  background: #171420; }
+  .searchbar-wrapper .searchbar {
+    padding: .5rem;
+    display: flex;
+    justify-content: center; }
+    .searchbar-wrapper .searchbar .results-wrapper {
+      position: relative; }
+      .searchbar-wrapper .searchbar .results-wrapper .searchbar-results {
+        background: #271832;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%; }
+        .searchbar-wrapper .searchbar .results-wrapper .searchbar-results .user-wrapper {
+          padding: .5rem;
+          cursor: pointer;
+          display: flex; }
+          .searchbar-wrapper .searchbar .results-wrapper .searchbar-results .user-wrapper:hover {
+            background: #261e41; }
+          .searchbar-wrapper .searchbar .results-wrapper .searchbar-results .user-wrapper .name {
+            color: #fff;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding-left: .5rem; }
+          .searchbar-wrapper .searchbar .results-wrapper .searchbar-results .user-wrapper .views {
+            font-size: 0.9rem;
+            margin-left: auto;
+            align-self: flex-end;
+            color: #acacac; }
+            .searchbar-wrapper .searchbar .results-wrapper .searchbar-results .user-wrapper .views span {
+              margin-left: .3rem; }
+      .searchbar-wrapper .searchbar .results-wrapper input {
+        color: #fff;
+        padding: .5rem 1rem;
+        border: 0;
+        background: #261e41;
+        font-size: 1.3rem;
+        outline-color: #ff008d; }

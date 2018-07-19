@@ -1,0 +1,33 @@
+.nav-wrapper 
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  background: #fff
+  box-shadow: 0 3px 5px rgba(107, 107, 107, 0.66)
+  z-index: 500
+  ul
+    display: flex
+    li
+      a
+        text-transform: uppercase
+        font-weight: 500
+        position: relative
+        display: block
+        padding: 1.2rem
+        &::before
+          position: absolute
+          content: ''
+          bottom: 0
+          left: 0
+          height: 4px
+          width: 100%
+          background: #8460c3
+          transition: transform 150ms ease-out
+          transform: scaleX(0)
+        &:hover
+          &::before
+            transform: scaleX(1)
+        &.active
+          &::before
+            transform: scaleX(1)

@@ -1,0 +1,72 @@
+#streamers-side-bar ul::-webkit-scrollbar {
+  width: .5em; }
+
+#streamers-side-bar ul::-webkit-scrollbar-thumb {
+  background: #432751;
+  border-radius: 20px;
+  border: 1px solid #34293a; }
+
+#streamers-side-bar {
+  position: relative;
+  cursor: pointer;
+  border-right: 1px solid #ff008d6b;
+  flex-basis: 300px; }
+  #streamers-side-bar .load-more-btn {
+    cursor: pointer;
+    font-weight: bold;
+    height: 60px;
+    width: 100%;
+    color: #c282a4;
+    font-size: 2rem;
+    background: #271832;
+    border: 3px solid #ff008d;
+    text-transform: uppercase; }
+    #streamers-side-bar .load-more-btn:hover {
+      background: #171421; }
+  #streamers-side-bar ul {
+    height: calc(100vh - (57.38px + 60px));
+    overflow-y: auto;
+    overflow-x: hidden; }
+    #streamers-side-bar ul li {
+      cursor: pointer;
+      border-bottom: 1px solid #ff008d6b; }
+      #streamers-side-bar ul li:nth-child(odd) {
+        background: #261731; }
+      #streamers-side-bar ul li:nth-child(even) {
+        background: #2d1c39; }
+      #streamers-side-bar ul li:hover {
+        background: #342043; }
+        #streamers-side-bar ul li:hover .name {
+          color: #fff !important; }
+        #streamers-side-bar ul li:hover .game {
+          color: #acacac !important; }
+      #streamers-side-bar ul li .streamer-wrapper {
+        position: relative;
+        display: flex;
+        padding: .5rem 0 .5rem .5rem; }
+        #streamers-side-bar ul li .streamer-wrapper i {
+          position: absolute;
+          top: 14px;
+          right: 10px;
+          color: #3dff00;
+          font-size: .5rem; }
+        #streamers-side-bar ul li .streamer-wrapper .info {
+          padding-left: .5rem;
+          display: flex;
+          flex-direction: column;
+          flex: 1; }
+          #streamers-side-bar ul li .streamer-wrapper .info .name {
+            color: #acacac;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: .3rem; }
+          #streamers-side-bar ul li .streamer-wrapper .info .game {
+            font-weight: 400;
+            font-size: .8rem;
+            color: #777777; }
+        #streamers-side-bar ul li .streamer-wrapper .popup {
+          position: absolute;
+          top: 0;
+          left: 300px;
+          width: 300px;
+          height: 100%; }

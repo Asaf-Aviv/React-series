@@ -1,0 +1,17 @@
+#google-map {
+  background: #444;
+  flex: 1;
+  color: #757575;
+  padding: 3rem; }
+  @media (max-width: 959px) {
+    #google-map {
+      height: 400px;
+      padding-top: 1.5rem; } }
+
+.marker {
+  padding: .5rem;
+  position: absolute;
+  background: #fff !important;
+  font-size: 1rem;
+  color: #000;
+  z-index: 200; }

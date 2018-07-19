@@ -1,0 +1,25 @@
+#add-item-form {
+  display: flex;
+  flex-direction: column; }
+  #add-item-form input {
+    font-size: 1.3rem;
+    height: 40px; }
+    #add-item-form input:first-of-type {
+      margin: .5rem 0;
+      padding-left: .5rem; }
+    #add-item-form input:last-of-type {
+      border-radius: 5px;
+      box-shadow: 2px 2px 2px 2px #999;
+      transition: background 120ms ease-out, color 120ms ease-out, box-shadow 50ms ease-out; }
+      #add-item-form input:last-of-type:active {
+        box-shadow: 1px 1px 2px #999; }
+      #add-item-form input:last-of-type:hover {
+        background: #8462c4;
+        color: #fff; }
+    #add-item-form input:focus {
+      outline-color: #8462c4; }
+    #add-item-form input[type="submit"] {
+      text-transform: uppercase;
+      background: transparent;
+      cursor: pointer;
+      border: 3px solid #8462c4; }

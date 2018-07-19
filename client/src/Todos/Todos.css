@@ -1,0 +1,21 @@
+#todos-app {
+  background: #9cfffb;
+  height: calc(100vh - 57.38px);
+  color: #757575;
+  display: flex;
+  align-items: flex-start; }
+  #todos-app #todos-wrapper {
+    border-radius: 10px;
+    box-shadow: 0px 2px 3px 2px #666666;
+    flex-direction: column;
+    margin: auto;
+    width: 400px;
+    padding: 2rem;
+    background: #f3f3f3;
+    border: 3px solid #8462c4; }
+    #todos-app #todos-wrapper #todos-header h1 {
+      font-style: italic;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #898989; }

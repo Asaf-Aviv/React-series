@@ -1,0 +1,68 @@
+.games-menu::-webkit-scrollbar {
+  width: .5em;
+  background: #171420; }
+
+.games-menu::-webkit-scrollbar-thumb {
+  background: #432751;
+  border: 1px solid #34293a; }
+
+#search-controller {
+  position: relative;
+  height: 220px;
+  background: #261e41;
+  border-top: 1px solid #ff008d6b; }
+  #search-controller .controls-wrapper {
+    display: flex;
+    height: 100%; }
+    #search-controller .controls-wrapper .game-controller {
+      padding: 1rem; }
+      #search-controller .controls-wrapper .game-controller .selected-game {
+        cursor: pointer; }
+      #search-controller .controls-wrapper .game-controller .games-menu {
+        overflow-y: scroll;
+        background: rgba(0, 0, 0, 0.5);
+        height: calc(100vh - (220px + 57.38px));
+        width: calc(100vw - 300px);
+        position: fixed;
+        left: 300px;
+        top: 58.38px; }
+        #search-controller .controls-wrapper .game-controller .games-menu ul {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between; }
+          #search-controller .controls-wrapper .game-controller .games-menu ul li {
+            margin: .5rem;
+            text-align: center;
+            cursor: pointer;
+            word-break: break-word; }
+            #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper {
+              justify-content: center;
+              align-items: flex-start;
+              display: flex;
+              flex-flow: column wrap;
+              color: #fff;
+              font-size: .8rem; }
+              #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo {
+                overflow: hidden;
+                position: relative; }
+                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo::after {
+                  opacity: .4;
+                  padding: .5rem;
+                  top: 50%;
+                  left: 50%;
+                  height: 190px;
+                  width: 136px;
+                  transform: translate(-50%, -50%);
+                  position: absolute;
+                  content: '';
+                  background: #000;
+                  z-index: 3;
+                  transition: opacity 300ms ease-out; }
+                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo img {
+                  display: block;
+                  position: relative;
+                  transition: transform 300ms ease-out; }
+                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo:hover::after {
+                  opacity: 0; }
+                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo:hover img {
+                  transform: scale(1.1); }

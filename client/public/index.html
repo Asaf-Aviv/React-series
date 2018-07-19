@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy|Raleway:300,400" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    
+    <title>React Series</title>
+    
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="app"></div>
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script>
+      function embedPlayer(channelName) {
+        const playerContainer = document.getElementById('twitch-player');
+        if (playerContainer.hasChildNodes())  {
+          playerContainer.removeChild(playerContainer.firstChild);
+        }
+        new Twitch.Embed('twitch-player', {
+          width: '100%',
+          height: '100%',
+          theme: 'dark',
+          channel: channelName
+        });
+      }
+    </script>
+  </body>
+</html>
