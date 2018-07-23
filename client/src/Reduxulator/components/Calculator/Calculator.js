@@ -16,7 +16,7 @@ const Calc = props => {
       <button onClick={() => (setOperator(props.mulNum))}>MUL</button>
       <button onClick={() => (setOperator(props.divNum))}>DIV</button>
       <button onClick={() => (setOperator(props.modNum))}>MOD</button>
-      <button onClick={() => (props.setNum(3), execOperation())}>3</button>
+      <button onClick={() => (props.setNum(3))}>3</button>
       <button onClick={execOperation}>EXEC</button>
       <span style={{ padding: '1rem' }}>Value: {props.currentNumber}</span>
       <span>Result: {props.result}</span>

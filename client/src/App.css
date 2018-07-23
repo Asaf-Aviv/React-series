@@ -48,6 +48,7 @@ html {
   -moz-osx-font-smoothing: grayscale; }
 
 body {
+  position: relative;
   font-family: 'Roboto', sans-serif;
   margin-top: 57.38px; }
 

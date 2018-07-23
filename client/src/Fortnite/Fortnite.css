@@ -1,0 +1,206 @@
+#fortnite-app h1, h2, h3, h4, h5, h6 {
+  font-family: Luckiest Guy;
+  text-transform: uppercase;
+  letter-spacing: .15rem; }
+
+#fortnite-app {
+  padding-top: 2rem;
+  color: #fff;
+  font-family: Raleway;
+  background: linear-gradient(180deg, #210d34 0, #210d34 50%, #2f1a5a);
+  width: 100%;
+  min-height: calc(100vh - 58.38px); }
+  @media (max-width: 959px) {
+    #fortnite-app > .container {
+      width: 100%; } }
+  #fortnite-app #fortnite-nav {
+    background: #2e1c59;
+    width: 100%;
+    text-transform: uppercase;
+    font-family: Raleway;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    border-bottom: 1px solid #515151; }
+    #fortnite-app #fortnite-nav ul {
+      display: flex; }
+      #fortnite-app #fortnite-nav ul li a {
+        position: relative;
+        display: block;
+        padding: 1.2rem;
+        font-weight: 600;
+        letter-spacing: 0.1rem;
+        color: #ccc; }
+        #fortnite-app #fortnite-nav ul li a.active {
+          color: #fff; }
+          #fortnite-app #fortnite-nav ul li a.active::before {
+            height: 5px; }
+        #fortnite-app #fortnite-nav ul li a:hover {
+          color: #fff; }
+          #fortnite-app #fortnite-nav ul li a:hover::before {
+            height: 5px; }
+        #fortnite-app #fortnite-nav ul li a::before {
+          background: #ff0;
+          content: "";
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0;
+          z-index: -1;
+          transition: height .2s ease-in-out; }
+
+.search-bar {
+  margin-left: auto;
+  display: flex;
+  align-items: center; }
+  .search-bar input {
+    font-size: 1.2rem;
+    letter-spacing: 0.05rem;
+    font-weight: 600;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding-left: .5rem;
+    background: #fff;
+    border: 0;
+    height: 35px; }
+    .search-bar input:focus {
+      outline-color: #210d34; }
+  .search-bar button {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+    justify-content: center;
+    width: 37px;
+    height: 35px;
+    background: #646464;
+    cursor: pointer;
+    border: 0;
+    transition: background .2s ease-in-out; }
+    .search-bar button:focus {
+      outline-color: #210d34; }
+    .search-bar button:hover {
+      background: #292929; }
+      .search-bar button:hover span {
+        color: #ff0; }
+    .search-bar button span {
+      transition: color .2s ease-in-out;
+      color: #ccc;
+      font-size: 27px; }
+
+.gradient-bg {
+  background: linear-gradient(180deg, #210d34 0, #210d34 50%, #2f1a5a); }
+
+.green-border {
+  border: 2px solid #00c831; }
+
+.fortnite-news {
+  display: flex; }
+  .fortnite-news .main-news {
+    flex: 3;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; }
+    .fortnite-news .main-news .news-card {
+      margin: 1rem 0;
+      flex-basis: 45%;
+      padding: 1rem;
+      text-align: center; }
+      .fortnite-news .main-news .news-card h3 {
+        height: 50px;
+        color: #fff200; }
+      .fortnite-news .main-news .news-card p {
+        max-width: 220px;
+        margin: 0 auto; }
+  .fortnite-news .patch-notes {
+    flex: 1; }
+    .fortnite-news .patch-notes .patch-notes-card {
+      font-weight: 600;
+      padding: 1rem;
+      margin: 1rem 1rem 2rem 1rem;
+      display: flex;
+      flex-direction: column; }
+      .fortnite-news .patch-notes .patch-notes-card h1 {
+        color: #fff200; }
+      .fortnite-news .patch-notes .patch-notes-card .date {
+        color: #00c831;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid;
+        margin-bottom: 1rem; }
+      .fortnite-news .patch-notes .patch-notes-card img {
+        display: block;
+        margin: 1rem 0;
+        max-width: 100%; }
+
+@media (max-width: 959px) {
+  .main-news {
+    flex: 1.1 !important; }
+    .main-news .news-card {
+      flex-basis: 90% !important; } }
+
+@media (max-width: 599px) {
+  .fortnite-news {
+    flex-direction: column !important; }
+    .fortnite-news .news-card {
+      flex: 1; } }
+
+.challenge-card {
+  margin-top: 1rem;
+  padding: 1rem 0;
+  display: flex;
+  border-bottom: 1px solid #ffcc00;
+  align-items: center; }
+  .challenge-card .stars {
+    position: relative; }
+    .challenge-card .stars img {
+      height: 100px; }
+    .challenge-card .stars span {
+      color: #ffc600;
+      font-size: 3rem;
+      font-family: Luckiest Guy;
+      position: absolute;
+      top: -1rem;
+      left: -1rem; }
+  .challenge-card .challenge-info {
+    margin-left: 2rem; }
+    .challenge-card .challenge-info h2 {
+      color: #00ff00; }
+    .challenge-card .challenge-info span {
+      font-size: 1.17em; }
+    .challenge-card .challenge-info .easy {
+      color: #4fff00; }
+    .challenge-card .challenge-info .normal {
+      color: #ff8900; }
+    .challenge-card .challenge-info .hard {
+      color: #ff0000; }
+
+.fortnite-store {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap; }
+  .fortnite-store .store-item {
+    flex: 1;
+    padding: 2rem;
+    margin: 2rem;
+    border: 1px solid #3dff00; }
+    .fortnite-store .store-item h1 {
+      margin-bottom: 1rem; }
+    .fortnite-store .store-item h2 {
+      margin-bottom: 1rem; }
+    .fortnite-store .store-item .img {
+      display: inline-block;
+      max-height: 200px;
+      margin: 1rem 0; }
+    .fortnite-store .store-item .fortnite-cost {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center; }
+      .fortnite-store .store-item .fortnite-cost img {
+        height: 60px; }
+      .fortnite-store .store-item .fortnite-cost span {
+        margin-left: .5rem;
+        color: #ffc600;
+        font-size: 3rem;
+        font-family: Luckiest Guy; }
