@@ -5,16 +5,12 @@ import { twitchHeaders } from '../../util/util';
 import './SearchController.css';
 
 class SearchController extends Component {
-  constructor() {
-    super();
+  state = {
+    topGames: [],
+    menuIsOpen: false
+  };
 
-    this.state = {
-      topGames: [],
-      menuIsOpen: false
-    };
-  }
-
-  componentWillMount() {
+  componentDidMount() {
     axios('https://api.twitch.tv/kraken/games/top?limit=100', { ...twitchHeaders })
       .then(res => {
         this.setState({ topGames: res.data.top })

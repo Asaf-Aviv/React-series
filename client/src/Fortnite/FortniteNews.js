@@ -30,7 +30,7 @@ class FortniteNews extends Component {
     }
   };
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getPatchNotes()
       .then(
         ({ data }) => this.setState({ blogList: data.blogList }))

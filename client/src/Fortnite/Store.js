@@ -10,7 +10,7 @@ class Store extends Component {
 
   vbucksImage = 'https://fortnite-public-files.theapinetwork.com/fortnite-vbucks-icon.png'
 
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getStore()
       .then(
         ({ data }) => this.setState({ store: data.items })

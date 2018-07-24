@@ -7,22 +7,18 @@ import axios from 'axios';
 import './Todos.css';
 
 class Todos extends Component {
-  constructor() {
-    super();
-    this.state = {
-      todos: [],
-      isLoading: false
-    };
-  }
+  state = {
+    todos: [],
+    isLoading: false
+  };
   
-  componentWillMount = () => {
+  componentDidMount() {
     this.setState({ isLoading: true });
+
     axios.get('/api/todos')
       .then(res => this.setState({ todos: res.data, isLoading: false }))
       .catch(err => console.log(JSON.stringify(err, null, 2)));
-  }
 
-  componentDidMount() {
     const nav = document.querySelector('.nav-wrapper');
     const navLinks = document.getElementsByTagName('a');
     nav.style.boxShadow = '0 3px 5px rgba(107, 107, 107, 0.66)';

@@ -3,12 +3,9 @@ import React, { Component } from 'react';
 import './TodosForm.css';
 
 class TodosForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      itemInput: ''
-    };
-  }
+  state = {
+    itemInput: ''
+  };
 
   handleChange = e => {
     this.setState({ itemInput: e.target.value });

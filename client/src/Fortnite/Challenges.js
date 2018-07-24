@@ -22,7 +22,7 @@ const ChallengeCard = props => (
 );
 
 class Challenges extends Component {
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getChallenges()
       .then(
         ({ data }) => {
@@ -34,7 +34,9 @@ class Challenges extends Component {
       )
   }
 
-  getChallenges = () => axios.post('challenges/get', qs.stringify({ season: 'season4', language: 'en' }));
+  getChallenges = () => (
+    axios.post('challenges/get', qs.stringify({ season: 'season4', language: 'en' }))
+  );
   
   state = {
     challenges: []

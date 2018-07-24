@@ -3,7 +3,7 @@ import axios from 'axios';
 import qs from 'querystring';
 
 class Leaderboards extends Component {
-  componentWillMount = () => {
+  componentDidMount = () => {
     this.getLeaderboards('pc', 'solo')
       .then(
         ({ data }) => console.log(data)
