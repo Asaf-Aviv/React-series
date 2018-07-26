@@ -11,8 +11,8 @@ import qs from 'querystring';
 
 import './Fortnite.css';
 
-axios.defaults.baseURL = 'https://fortnite-public-api.theapinetwork.com/prod09/';
-axios.defaults.headers.common['Authorization'] = 'e4ad44f24fc0ce4834dbdf6d3e8452e4'
+// axios.defaults.baseURL = 'https://fortnite-public-api.theapinetwork.com/prod09/';
+// axios.defaults.headers.common['Authorization'] = 'e4ad44f24fc0ce4834dbdf6d3e8452e4'
 
 class Fortnite extends Component {
   componentDidMount = () => {

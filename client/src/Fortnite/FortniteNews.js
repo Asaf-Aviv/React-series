@@ -22,13 +22,17 @@ const NewsCard = ({ newsList }) => (
 );
 
 class FortniteNews extends Component {
-  state = {
-    blogList: [],
-    news: {
-      br: [],
-      stw: []
-    }
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      blogList: [],
+      news: {
+        br: [],
+        stw: []
+      }
+    };
+  }
 
   componentDidMount = () => {
     this.getPatchNotes()

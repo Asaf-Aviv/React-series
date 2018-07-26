@@ -5,8 +5,8 @@ import { NavLink } from 'react-router-dom';
 import './NavigationBar.css';
 
 class NavigationBar extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       collapsed: true

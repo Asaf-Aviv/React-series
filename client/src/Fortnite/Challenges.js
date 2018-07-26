@@ -22,6 +22,14 @@ const ChallengeCard = props => (
 );
 
 class Challenges extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      challenges: []
+    };
+  }
+
   componentDidMount = () => {
     this.getChallenges()
       .then(
@@ -29,25 +37,22 @@ class Challenges extends Component {
           this.setState({
             challenges: Object.keys(data.challenges).map(week => data.challenges[week])
           })
-          console.log(data)
         }
-      )
-  }
+      );
+  };
 
   getChallenges = () => (
     axios.post('challenges/get', qs.stringify({ season: 'season4', language: 'en' }))
   );
-  
-  state = {
-    challenges: []
-  };
 
   render() {
     const { challenges } = this.state
     return (
       <div id="fortnite-challenges">
         <Container>
-          {challenges.map(week => week.map(challenge => <ChallengeCard key={challenge.challenge} {...challenge} />))}
+          {challenges.map(week => week.map(challenge => 
+            <ChallengeCard key={challenge.challenge} {...challenge} />
+          ))}
         </Container>
       </div>
     );

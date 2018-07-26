@@ -10,24 +10,22 @@ class SearchController extends Component {
     menuIsOpen: false
   };
 
-  componentDidMount() {
+  componentDidMount = () => (
     axios('https://api.twitch.tv/kraken/games/top?limit=100', { ...twitchHeaders })
-      .then(res => {
-        this.setState({ topGames: res.data.top })
-      })
-  }
+      .then(
+        res => this.setState({ topGames: res.data.top })
+      )
+  );
 
-  toggleGamesMenu() {
-    this.setState(prevState => ({
-      menuIsOpen: !prevState.menuIsOpen
-    }));
-  }
+  toggleGamesMenu = () => (
+    this.setState(
+      prevState => ({ menuIsOpen: !prevState.menuIsOpen })
+    )
+  );
 
   selectGameHandler = game => {
     this.props.updateGame(game);
-    this.setState({
-      menuIsOpen: false
-    });
+    this.setState({ menuIsOpen: false });
   }
 
   render() {
@@ -35,7 +33,7 @@ class SearchController extends Component {
       <div id="search-controller">
         <div className="controls-wrapper">
           <div className="game-controller">
-            <div className="selected-game" onClick={this.toggleGamesMenu.bind(this)}>
+            <div className="selected-game" onClick={this.toggleGamesMenu}>
               {
                 this.props.selectedGame
                   ? <img src={this.props.selectedGame.box.medium} alt={this.props.selectedGame.name}/>

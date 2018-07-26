@@ -7,10 +7,14 @@ import axios from 'axios';
 import './Todos.css';
 
 class Todos extends Component {
-  state = {
-    todos: [],
-    isLoading: false
-  };
+  constructor() {
+    super();
+    
+    this.state = {
+      todos: [],
+      isLoading: false
+    };
+  }
   
   componentDidMount() {
     this.setState({ isLoading: true });
@@ -40,6 +44,7 @@ class Todos extends Component {
 
   addItem = todoItem => {
     this.setState({ isLoading: true });
+
     axios.post('/api/todos', { todoItem, })
       .then(res => {
         this.setState(prevState => ({

@@ -1,4 +1,4 @@
-#fortnite-app h1, h2, h3, h4, h5, h6 {
+#fortnite-app h1, #fortnite-app h2, #fortnite-app h3, #fortnite-app h4, #fortnite-app h5, #fortnite-app h6 {
   font-family: Luckiest Guy;
   text-transform: uppercase;
   letter-spacing: .15rem; }
