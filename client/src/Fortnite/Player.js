@@ -154,19 +154,9 @@ class PlayerRecap extends Component {
     this.props.fetchPlayer(playerName)
   }
 
-  findPlayer = async username => {
-    this.setState({ isLoading: true, searchError: false })
-    const playerDetails = await this.getUser(username)
-    if (!playerDetails.data.error) {
-      const playerStats = await this.getUserStats(playerDetails.data, 'season5')
-      this.setState({ playerData: playerStats.data, isLoading: false })
-    } else {
-      this.setState({ PlayerData: {}, isLoading: false, searchError: true })
-    }
-  }
-
   render() {
     const { playerData } = this.props
+    
     return (
       <div className="player-recap">
         {/* {this.state.searchError && <h1>Player Not Found</h1>} */}

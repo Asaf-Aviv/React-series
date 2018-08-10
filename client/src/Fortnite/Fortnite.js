@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import FortniteNav from './FortniteNav'
-import Leaderboards from './Leaderboards'
-import Challenges from './Challenges'
+import Leaderboards from '../Leaderboards/Leaderboards'
+import Challenges from './Challenges/Challenges'
 import Store from './Store'
 import PlayerRecap from './Player'
 import FortniteNews from './FortniteNews'
@@ -21,6 +21,7 @@ class Fortnite extends Component {
     upcomingItems: [],
     challenges: [],
     playerData: {},
+    searchError: false,
     loadingWins: false,
     loadingKills: false
   }
@@ -47,6 +48,10 @@ class Fortnite extends Component {
     this.setState({ [`${stateKey}Error`]: true })
   )
 
+  loaderSetter = stateKey => (
+    this.setState({ [`${stateKey}Loading`]: true })
+  )
+
   fetcher = (route, stateKey, query) => {
     const queryString = query && Object.keys(query).map(key => `${key}=${query[key]}`)
     axios.get(`/api/fortnite/${route}?${queryString || ''}`)
@@ -56,12 +61,7 @@ class Fortnite extends Component {
 
   fetchPlayer = async playerName => {
     const { data:playerData } = await axios.get(`/api/fortnite/player/${playerName}`)
-    // if (!playerDetails.data.error) {
-    //   const playerStats = await this.getUserStats(playerDetails.data, 'season5')
     this.setState({ playerData })
-    // } else {
-    //   this.setState({ PlayerData: {}, isLoading: false, searchError: true })
-    // }
   }
 
   render() {

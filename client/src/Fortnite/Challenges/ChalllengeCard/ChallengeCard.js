@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import Container from '../components/Container/Container'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 const starSrc = 'https://fortnite-public-files.theapinetwork.com/fortnite-br-challenges-star.png'
@@ -20,18 +19,11 @@ const ChallengeCard = props => (
   </div>
 )
 
-const Challenges = ({ challenges })  => (
-  <div id="fortnite-challenges">
-    <Container>
-      {challenges.map(week => week.map(challenge => 
-        <ChallengeCard key={challenge.challenge} {...challenge} />
-      ))}
-    </Container>
-  </div>
-)
-
-Challenges.propTypes = {
-  challenges: PropTypes.array.isRequired
+ChallengeCard.propTypes = {
+  stars: PropTypes.string.isRequired,
+  challenge: PropTypes.string.isRequired,
+  difficulty: PropTypes.string.isRequired,
+  total: PropTypes.string.isRequired
 }
 
-export default Challenges
+export default ChallengeCard
