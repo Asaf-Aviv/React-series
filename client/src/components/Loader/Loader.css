@@ -23,16 +23,16 @@
       animation-timing-function: cubic-bezier(0, 1, 1, 0); }
       .loader .lds-ellipsis div:nth-child(1) {
         left: 6px;
-        animation: lds-ellipsis1 0.4s infinite; }
+        animation: lds-ellipsis1 400ms infinite; }
       .loader .lds-ellipsis div:nth-child(2) {
         left: 6px;
-        animation: lds-ellipsis2 0.4s infinite; }
+        animation: lds-ellipsis2 400ms infinite; }
       .loader .lds-ellipsis div:nth-child(3) {
         left: 26px;
-        animation: lds-ellipsis2 0.4s infinite; }
+        animation: lds-ellipsis2 400ms infinite; }
       .loader .lds-ellipsis div:nth-child(4) {
         left: 45px;
-        animation: lds-ellipsis3 0.4s infinite; }
+        animation: lds-ellipsis3 400ms infinite; }
 
 @keyframes lds-ellipsis1 {
   from {

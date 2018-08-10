@@ -28,7 +28,6 @@ class NavigationBar extends Component {
             <li><NavLink to="/website">Website</NavLink></li>
             <li><NavLink to="/twitch">Twitch</NavLink></li>
             <li><NavLink to="/todos">Todos</NavLink></li>
-            <li><NavLink to="/reduxulator">Reduxulator</NavLink></li>
             <li><NavLink to="/fortnite">Fortnite</NavLink></li>
           </ul>
         </Container>

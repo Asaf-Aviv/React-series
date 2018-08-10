@@ -4,9 +4,7 @@
   letter-spacing: .15rem; }
 
 #fortnite-app {
-  padding-top: 2rem;
   color: #fff;
-  font-family: Raleway;
   background: linear-gradient(180deg, #210d34 0, #210d34 50%, #2f1a5a);
   width: 100%;
   min-height: calc(100vh - 58.38px); }
@@ -17,7 +15,6 @@
     background: #2e1c59;
     width: 100%;
     text-transform: uppercase;
-    font-family: Raleway;
     position: fixed;
     top: 0;
     right: 0;
@@ -54,41 +51,42 @@
 
 .search-bar {
   margin-left: auto;
-  display: flex;
-  align-items: center; }
-  .search-bar input {
-    font-size: 1.2rem;
-    letter-spacing: 0.05rem;
-    font-weight: 600;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding-left: .5rem;
-    background: #fff;
-    border: 0;
-    height: 35px; }
-    .search-bar input:focus {
-      outline-color: #210d34; }
-  .search-bar button {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    display: flex;
-    justify-content: center;
-    width: 37px;
-    height: 35px;
-    background: #646464;
-    cursor: pointer;
-    border: 0;
-    transition: background .2s ease-in-out; }
-    .search-bar button:focus {
-      outline-color: #210d34; }
-    .search-bar button:hover {
-      background: #292929; }
-      .search-bar button:hover span {
-        color: #ff0; }
-    .search-bar button span {
-      transition: color .2s ease-in-out;
-      color: #ccc;
-      font-size: 27px; }
+  align-items: center;
+  display: flex; }
+  .search-bar form {
+    display: flex; }
+    .search-bar form input {
+      font-size: 1.2rem;
+      letter-spacing: 0.05rem;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      padding-left: .5rem;
+      background: #fff;
+      border: 0;
+      height: 35px; }
+      .search-bar form input:focus {
+        outline-color: #210d34; }
+    .search-bar form button {
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      display: flex;
+      justify-content: center;
+      width: 37px;
+      height: 35px;
+      background: #646464;
+      cursor: pointer;
+      border: 0;
+      transition: background .2s ease-in-out; }
+      .search-bar form button:focus {
+        outline-color: #210d34; }
+      .search-bar form button:hover {
+        background: #292929; }
+        .search-bar form button:hover span {
+          color: #ff0; }
+      .search-bar form button span {
+        transition: color .2s ease-in-out;
+        color: #ccc;
+        font-size: 27px; }
 
 .gradient-bg {
   background: linear-gradient(180deg, #210d34 0, #210d34 50%, #2f1a5a); }
@@ -117,7 +115,6 @@
   .fortnite-news .patch-notes {
     flex: 1; }
     .fortnite-news .patch-notes .patch-notes-card {
-      font-weight: 600;
       padding: 1rem;
       margin: 1rem 1rem 2rem 1rem;
       display: flex;
@@ -181,26 +178,199 @@
   display: flex;
   flex-wrap: wrap; }
   .fortnite-store .store-item {
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    flex-basis: 250px;
     padding: 2rem;
-    margin: 2rem;
-    border: 1px solid #3dff00; }
+    margin: 1rem;
+    box-shadow: 3px 3px 12px 1px #000; }
     .fortnite-store .store-item h1 {
       margin-bottom: 1rem; }
     .fortnite-store .store-item h2 {
       margin-bottom: 1rem; }
     .fortnite-store .store-item .img {
       display: inline-block;
-      max-height: 200px;
-      margin: 1rem 0; }
+      height: 120px;
+      width: 120px;
+      margin: auto auto 1rem auto; }
     .fortnite-store .store-item .fortnite-cost {
       display: flex;
       align-items: flex-end;
       justify-content: center; }
       .fortnite-store .store-item .fortnite-cost img {
-        height: 60px; }
+        height: 60px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 2px #a5b6c7; }
       .fortnite-store .store-item .fortnite-cost span {
-        margin-left: .5rem;
+        text-shadow: 2px 2px 7px #000000;
+        margin-left: 1rem;
         color: #ffc600;
         font-size: 3rem;
         font-family: Luckiest Guy; }
+
+.top-10 .loader .lds-ellipsis div:nth-child(1) {
+  background: #fffd00; }
+
+.top-10 .loader .lds-ellipsis div:nth-child(2) {
+  background: #00ff00; }
+
+.top-10 .loader .lds-ellipsis div:nth-child(3) {
+  background: #8464c5; }
+
+.top-10 .loader .lds-ellipsis div:nth-child(4) {
+  background: #fffd00; }
+
+.fa-playstation {
+  color: #2E6DB4; }
+
+.fa-xbox {
+  color: #7ab800; }
+
+.fa-desktop {
+  color: #fffd00; }
+
+@media (max-width: 959px) {
+  .top-10 {
+    flex-direction: column; }
+    .top-10 > div {
+      margin-bottom: 2rem; }
+      .top-10 > div .head {
+        justify-content: space-between; }
+      .top-10 > div .player-row {
+        justify-content: space-between; } }
+
+@media (max-width: 419px) {
+  .top-10 {
+    font-size: 16px !important; } }
+
+.top-10 {
+  font-size: 18px;
+  display: flex;
+  justify-content: space-around; }
+  .top-10 > div {
+    position: relative;
+    padding: 1rem;
+    flex-basis: 450px;
+    height: 550px; }
+    .top-10 > div .head {
+      border-bottom: 1px solid #00fff9;
+      display: flex;
+      padding: .5rem; }
+      .top-10 > div .head span {
+        font-style: italic;
+        font-weight: 300;
+        color: #00ffef;
+        letter-spacing: 1.5px; }
+        .top-10 > div .head span:nth-of-type(1) {
+          flex-basis: 33px; }
+        .top-10 > div .head span:nth-of-type(2) {
+          flex-basis: 30px; }
+        .top-10 > div .head span:nth-of-type(3) {
+          flex-basis: 180px; }
+        .top-10 > div .head span:nth-of-type(4) {
+          flex-basis: 70px; }
+        .top-10 > div .head span:nth-of-type(5) {
+          flex-basis: 66px; }
+    .top-10 > div .title {
+      letter-spacing: 4px !important;
+      padding-left: .5rem;
+      color: #fffd00;
+      margin-bottom: 1rem; }
+    .top-10 > div .player-row {
+      cursor: pointer;
+      padding: .5rem;
+      display: flex;
+      border-bottom: 1px solid #00fff9;
+      align-items: center; }
+      .top-10 > div .player-row:hover {
+        background: #2e1b58; }
+      .top-10 > div .player-row h3 {
+        flex-basis: 33px;
+        color: #00ff00; }
+      .top-10 > div .player-row i {
+        flex-basis: 30px; }
+      .top-10 > div .player-row .username {
+        font-weight: 600;
+        letter-spacing: 1px;
+        flex-basis: 180px;
+        color: #fff; }
+      .top-10 > div .player-row .kills, .top-10 > div .player-row .wins {
+        color: #fffd00;
+        font-weight: 600;
+        flex-basis: 70px; }
+      .top-10 > div .player-row .kd, .top-10 > div .player-row .matches {
+        font-weight: 600;
+        flex-basis: 66px;
+        color: #ccc; }
+
+.player-recap {
+  position: 43;
+  letter-spacing: 2px !important;
+  font-weight: 600; }
+  .player-recap > h1 {
+    padding-top: 5rem;
+    text-align: center; }
+  .player-recap .container {
+    font-size: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; }
+  .player-recap .title {
+    height: 25vh;
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(80deg, #8300ff 0, #bd1919 50%, #ecd785); }
+    .player-recap .title h1 {
+      color: #38ff0f;
+      font-size: 5rem; }
+    .player-recap .title i {
+      font-size: 4rem;
+      margin-right: 1rem; }
+  .player-recap .totals, .player-recap .stats {
+    line-height: 3rem;
+    padding: 1rem;
+    flex: 1; }
+    .player-recap .totals > h2, .player-recap .stats > h2 {
+      font-size: 3rem;
+      color: #2196f3;
+      margin-bottom: 2rem; }
+    .player-recap .totals > div, .player-recap .stats > div {
+      display: flex; }
+      .player-recap .totals > div h3, .player-recap .stats > div h3 {
+        color: #ffeb3b;
+        flex-basis: 200px; }
+      .player-recap .totals > div p, .player-recap .stats > div p {
+        color: #1ee9e4; }
+  .player-recap .stats {
+    flex: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+    .player-recap .stats h2 {
+      flex-basis: 100%; }
+    .player-recap .stats > div {
+      margin-bottom: 2rem;
+      flex-basis: 48%;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      border: 1px solid #00e9e3; }
+      .player-recap .stats > div > h3 {
+        text-align: center;
+        color: #2196f3;
+        flex-basis: auto; }
+      .player-recap .stats > div div {
+        display: flex;
+        justify-content: space-around; }
+
+@media (max-width: 999px) {
+  .player-recap .container {
+    display: block; } }
+
+@media (max-width: 669px) {
+  .player-recap .stats {
+    display: block; } }

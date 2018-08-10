@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import Container from '../components/Container/Container';
-import axios from 'axios';
-import qs from 'querystring';
+import React, { Component } from 'react'
+import Container from '../components/Container/Container'
+import PropTypes from 'prop-types'
 
 const starSrc = 'https://fortnite-public-files.theapinetwork.com/fortnite-br-challenges-star.png'
 
@@ -16,47 +15,23 @@ const ChallengeCard = props => (
       <h3>Difficult:
         <span className={props.difficulty}> {props.difficulty}</span>
       </h3>
-      <h3>Total: {props.total}</h3>
+      <h3>0 / {props.total}</h3>
     </div>
   </div>
-);
+)
 
-class Challenges extends Component {
-  constructor() {
-    super();
-    
-    this.state = {
-      challenges: []
-    };
-  }
+const Challenges = ({ challenges })  => (
+  <div id="fortnite-challenges">
+    <Container>
+      {challenges.map(week => week.map(challenge => 
+        <ChallengeCard key={challenge.challenge} {...challenge} />
+      ))}
+    </Container>
+  </div>
+)
 
-  componentDidMount = () => {
-    this.getChallenges()
-      .then(
-        ({ data }) => {
-          this.setState({
-            challenges: Object.keys(data.challenges).map(week => data.challenges[week])
-          })
-        }
-      );
-  };
-
-  getChallenges = () => (
-    axios.post('challenges/get', qs.stringify({ season: 'season4', language: 'en' }))
-  );
-
-  render() {
-    const { challenges } = this.state
-    return (
-      <div id="fortnite-challenges">
-        <Container>
-          {challenges.map(week => week.map(challenge => 
-            <ChallengeCard key={challenge.challenge} {...challenge} />
-          ))}
-        </Container>
-      </div>
-    );
-  }
+Challenges.propTypes = {
+  challenges: PropTypes.array.isRequired
 }
 
-export default Challenges;
+export default Challenges

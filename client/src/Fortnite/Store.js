@@ -1,45 +1,34 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import qs from 'querystring';
+import React from 'react'
+import Container from '../components/Container/Container'
+import PropTypes from 'prop-types'
 
+const vbucksImage = 'https://fortnite-public-files.theapinetwork.com/fortnite-vbucks-icon.png'
 
-class Store extends Component {
-  state = {
-    store: []
-  }
+const StoreItem = props => (
+  <div className="store-item gradient-bg green-border">
+    <h1>{props.name}</h1>
+    <h2>{props.item.rarity}</h2>
+    <h4>{props.item.captial}</h4>
+    <img className="img" src={props.item.image} alt={props.name} />
+    <div className="fortnite-cost">
+      <img src={vbucksImage} alt="vbucks"/>
+      <span>{props.cost}</span>
+    </div>
+  </div>
+)
 
-  vbucksImage = 'https://fortnite-public-files.theapinetwork.com/fortnite-vbucks-icon.png'
+const Store = ({ store, upcomingItems }) => (
+  <Container>
+    <div className="fortnite-store">
+      {store.map(item => <StoreItem key={item.itemid} {...item} />)}
+      {upcomingItems.map(item => <StoreItem key={item.name} {...item} />)}
+    </div>
+  </Container>  
+)
 
-  componentDidMount = () => {
-    this.getStore()
-      .then(
-        ({ data }) => this.setState({ store: data.items })
-      )
-  }
-
-  getStore = () => axios.post('store/get', qs.stringify({ language: 'en' }))
-
-  render() {
-    const { store } = this.state
-    return (
-      console.log(store, this.vbucksImage) ||
-      <div className="fortnite-store">
-        {store.map(item => 
-          <div key={item.itemid} className="store-item">
-            <h1>{item.name}</h1>
-            <h2>{item.item.rarity}</h2>
-            <h4>{item.item.captial}</h4>
-            <img className="img" src={item.item.image} alt={item.name} />
-            <div className="fortnite-cost">
-              <img src={this.vbucksImage} alt="vbucks"/>
-              <span>{item.cost}</span>
-            </div>
-          </div>
-        )}
-      </div>
-    )
-  }
+Store.propTypes = {
+  store: PropTypes.array.isRequired,
+  upcomingItems: PropTypes.array.isRequired
 }
 
-
-export default Store;
+export default Store

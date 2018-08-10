@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import moment from 'moment';
-import axios from 'axios';
-import qs from 'querystring';
+import React, { Component } from 'react'
+import Container from '../components/Container/Container'
+import PropTypes from 'prop-types'
+import moment from 'moment'
+import axios from 'axios'
+
+import qs from 'querystring'
 
 const PatchNotesCard = ({ blog }) => (
   <div className="patch-notes-card gradient-bg green-border">
@@ -10,72 +13,40 @@ const PatchNotesCard = ({ blog }) => (
     <h2 className="date">{moment(blog.date).format('ll')}</h2>
     <div dangerouslySetInnerHTML={{ __html: blog.short }} />
   </div>
-);
+)
 
-const NewsCard = ({ newsList }) => (
+const NewsCard = ({ news }) => (
   <div className="news-card gradient-bg green-border">
-    <h3>{newsList.title}</h3>
-    <img src={newsList.image} alt=""/>
-    <h4>{moment.unix(newsList.time).format('ll')}</h4>
-    <p>{newsList.body}</p>
+    <h3>{news.title}</h3>
+    <img src={news.image} alt="" />
+    <h4>{moment.unix(news.time).format('ll')}</h4>
+    <p>{news.body}</p>
   </div>
-);
+)
+const getPatchNotes = () => axios.post('patchnotes/get')
 
-class FortniteNews extends Component {
-  constructor() {
-    super();
+const getStwNews = (language = 'en') => axios.post('stw_motd/get', qs.stringify({ language }))
 
-    this.state = {
-      blogList: [],
-      news: {
-        br: [],
-        stw: []
-      }
-    };
-  }
+const FortniteNews = ({ brNews, blogList }) => (
+  <Container>
+    <div className="fortnite-news">
+      <main className="main-news">
+        {brNews.map(news => 
+          <NewsCard key={news.title} news={news} />
+        )}
+      </main>
+      <aside className="patch-notes">
+        {blogList.map(blog => 
+          <PatchNotesCard key={blog._id} blog={blog} />
+        )}
+      </aside>
+    </div>
+  </Container>
+)
 
-  componentDidMount = () => {
-    this.getPatchNotes()
-      .then(
-        ({ data }) => this.setState({ blogList: data.blogList }))
-    this.getBrNews()
-      .then(({ data }) => {
-        const brNews = data.entries.reduce((uniques, entry) => { 
-          if (!uniques.some(obj => obj.title === entry.title)) {
-            uniques.push(entry)
-          }
-          return uniques;
-        }, [])
-        this.setState({ news: { br: brNews} });
-      })
-  }
-    // this.getStdNews().then(({ data }) => console.log(data))
-  
-  getPatchNotes = () => axios.post('patchnotes/get')
-
-  getStdNews = (language = 'en') => axios.post('stw_motd/get', qs.stringify({ language }))
-  
-  getBrNews = (language = 'en') => axios.post('br_motd/get', qs.stringify({ language }))
-
-  render() {
-    const blogList = this.state.blogList;
-    const brNews = this.state.news.br;
-    return (
-      console.log(brNews) ||
-      <div className="fortnite-news">
-        <main className="main-news">
-          {brNews.map(newsList => 
-            <NewsCard key={newsList.title} newsList={newsList} />
-          )}
-        </main>
-        <aside className="patch-notes">
-          {blogList.map(blog => 
-            <PatchNotesCard key={blog._id} blog={blog} />
-          )}
-        </aside>
-      </div>
-    );
-  }
+FortniteNews.propTypes = {
+  brNews: PropTypes.array.isRequired,
+  blogList: PropTypes.array.isRequired
 }
 
-export default FortniteNews;
+export default FortniteNews
