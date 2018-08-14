@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import platformIcons from '../../platformIcons'
 
-const TableRow = ({ winsRow }, props) => (
+const TableRow = ({ winsRow, ...props }) => (
+  console.log(props) ||
   <a className="player-row" href={`/fortnite/player/${props.username}`}>
     <h3 className="rank">{props.rank}</h3>
     <i className={platformIcons[props.platform]} />
@@ -15,7 +16,7 @@ const TableRow = ({ winsRow }, props) => (
 TableRow.propTypes = {
   winsRow: PropTypes.bool,
   username: PropTypes.string.isRequired,
-  rank: PropTypes.string.isRequired,
+  rank: PropTypes.number.isRequired,
   platform: PropTypes.string.isRequired,
   wins: PropTypes.string,
   kills: PropTypes.string,

@@ -1,43 +1,37 @@
-import React, { Component, Fragment } from 'react'
-import Container from '../components/Container/Container'
+import React, { Fragment } from 'react'
+import Container from '../../components/Container/Container'
 import TableHead from  './TableHead/TableHead'
 import TableRow from './TableRow/TableRow'
-import Loader from '../components/Loader/Loader'
+import Loader from '../../components/Loader/Loader'
 
-class Leaderboards extends Component {
-  render() {
-    return (
-      <Container>
-        <div className="top-10">
-          <div className="top-10-wins">
-            {/* { this.state.loadingWins && <Loader /> } */}
-            {
-              this.props.top10Wins.length > 0 && 
-              <Fragment>
-                <TableHead wins />
-                {this.props.top10Wins.map(player => 
-                  <TableRow key={player.uid} {...player} winsRow />
-                )}
-              </Fragment>
-            }
-          </div>
-          <div className="top-10-kills">
-            {/* { this.state.loadingKills && <Loader /> } */}
-            {
-              this.props.top10Kills.length > 0 &&
-              <Fragment>
-                <TableHead />
-                {this.props.top10Kills.map(player => 
-                  <TableRow key={player.uid} {...player}/>
-                )}
-              </Fragment>
-            }
-          </div>
-        </div>
-      </Container>
-    )
-  }
-}
+const Leaderboards = props => (
+  <Container>
+    <div className="top-10">
+      <div className="top-10-wins">
+        {props.loadingWins && <Loader />}
+        {props.top10Wins.length > 0 && 
+          <Fragment>
+            <TableHead wins />
+            {props.top10Wins.map(player => 
+              <TableRow key={player.uid} {...player} winsRow />
+            )}
+          </Fragment>
+        }
+      </div>
+      <div className="top-10-kills">
+        {props.loadingKills && <Loader />}
+        {props.top10Kills.length > 0 &&
+          <Fragment>
+            <TableHead />
+            {props.top10Kills.map(player => 
+              <TableRow key={player.uid} {...player}/>
+            )}
+          </Fragment>
+        }
+      </div>
+    </div>
+  </Container>
+)
 
 // const WinsRow = props => (
 //   <a className="player-row" href={`/fortnite/player/${props.username}`}>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Container from '../components/Container/Container'
 import PropTypes from 'prop-types'
 import moment from 'moment'
@@ -23,7 +23,6 @@ const NewsCard = ({ news }) => (
     <p>{news.body}</p>
   </div>
 )
-const getPatchNotes = () => axios.post('patchnotes/get')
 
 const getStwNews = (language = 'en') => axios.post('stw_motd/get', qs.stringify({ language }))
 

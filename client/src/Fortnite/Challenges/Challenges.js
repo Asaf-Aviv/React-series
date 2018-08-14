@@ -1,6 +1,6 @@
 import React from 'react'
 import ChallengeCard from './ChalllengeCard/ChallengeCard'
-import Container from '../components/Container/Container'
+import Container from '../../components/Container/Container'
 import PropTypes from 'prop-types'
 
 const Challenges = ({ challenges })  => (

@@ -20,10 +20,10 @@ const ChallengeCard = props => (
 )
 
 ChallengeCard.propTypes = {
-  stars: PropTypes.string.isRequired,
+  stars: PropTypes.number.isRequired,
   challenge: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired,
-  total: PropTypes.string.isRequired
+  total: PropTypes.number.isRequired
 }
 
 export default ChallengeCard

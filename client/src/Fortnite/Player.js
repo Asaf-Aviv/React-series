@@ -1,8 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Container from '../components/Container/Container'
 import platformIcons from './platformIcons'
-import axios from 'axios'
-import qs from 'querystring'
 
 const Totals = props => (
   <div className="totals">
@@ -149,10 +147,14 @@ class PlayerRecap extends Component {
     this.props.fetchPlayer(playerName)
   }
 
-  componentWillReceiveProps = nextProps => {
+  UNSAFE_componentWillReceiveProps = nextProps => {
     const playerName = nextProps.match.params.playerName
-    this.props.fetchPlayer(playerName)
+
+    if (playerName !== this.props.match.params.playerName) {
+      this.props.fetchPlayer(playerName)
+    }
   }
+  
 
   render() {
     const { playerData } = this.props

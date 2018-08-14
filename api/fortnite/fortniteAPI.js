@@ -19,18 +19,23 @@ router.get('/news', async (req, res) => {
   res.send(brNews)
 })
 
+router.get('/patchNotes', async (req, res) => {
+  const { data } = await fortniteInstance.post('patchnotes/get')
+  res.send(data.blogList)
+})
+
 router.get('/leaderboards', async (req, res) => {
   const { data } = await fortniteInstance.post('leaderboards/get', qs.stringify(req.query))
   res.send(data.entries)
 })
 
 router.get('/store', async (req, res) => {
-  const { data } = await fortniteInstance.post('https://fortnite-public-api.theapinetwork.com/prod09/store/get', qs.stringify({ language: 'en' }))
+  const { data } = await fortniteInstance.post('store/get', qs.stringify({ language: 'en' }))
   res.send(data.items)
 })
 
 router.get('/upcoming', async (req, res) => {
-  const { data } = await fortniteInstance.post('https://fortnite-public-api.theapinetwork.com/prod09/upcoming/get', qs.stringify({ language: 'en' }))
+  const { data } = await fortniteInstance.post('upcoming/get', qs.stringify({ language: 'en' }))
   res.send(data.items)
 })
 

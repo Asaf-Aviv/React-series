@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import FortniteNav from './FortniteNav'
-import Leaderboards from '../Leaderboards/Leaderboards'
+import Leaderboards from './Leaderboards/Leaderboards'
 import Challenges from './Challenges/Challenges'
 import Store from './Store'
 import PlayerRecap from './Player'
@@ -29,6 +29,7 @@ class Fortnite extends Component {
   componentDidMount = () => {
     document.querySelector('.nav-wrapper').style.display = 'none'
     this.fetcher('news', 'brNews')
+    this.fetcher('patchNotes', 'blogList')
     this.fetcher('leaderboards', 'top10Wins', { window: 'top_10_wins' })
     this.fetcher('leaderboards', 'top10Kills', { window: 'top_10_kills' })
     this.fetcher('store', 'store')
@@ -83,7 +84,7 @@ class Fortnite extends Component {
               <Store store={this.state.store} upcomingItems={this.state.upcomingItems} />
             }/>
             <Route exact path={`${match.url}/player/:playerName`} render={props => 
-              <PlayerRecap fetchPlayer={this.fetchPlayer} playerData={this.state.playerData} {...props}/>
+              <PlayerRecap fetchPlayer={this.fetchPlayer} playerData={this.state.playerData} {...props} />
             }/>
             <Route render={() => <div>404 Page Not Found</div>} />
           </Switch>
