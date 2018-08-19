@@ -1,9 +1,8 @@
-// @ts-check
-
-import React from 'react'
-import Container from '../components/Container/Container'
-import { NavLink } from 'react-router-dom'
-import SearchBar from './SearchBar'
+import React from 'react';
+import Container from '../../components/Container/Container';
+import { NavLink } from 'react-router-dom';
+import SearchBar from './SearchBar/SearchBar';
+import backIcon from '../../icons/backIcon.svg';
 
 const FortniteNav = () => (
   <nav id="fortnite-nav">
@@ -14,9 +13,10 @@ const FortniteNav = () => (
         <li><NavLink to="/fortnite/challenges">Challenges</NavLink></li>
         <li><NavLink to="/fortnite/store">Store</NavLink></li>
         <SearchBar />
+        <li className="back"><NavLink exact to="/"><img src={backIcon} alt="back" title="Go back"/></NavLink></li>
       </ul>
     </Container>
   </nav>
-)
+);
 
-export default FortniteNav
+export default FortniteNav;

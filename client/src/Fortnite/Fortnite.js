@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import FortniteNav from './FortniteNav'
+import FortniteNav from './NavBar/FortniteNav'
 import Leaderboards from './Leaderboards/Leaderboards'
 import Challenges from './Challenges/Challenges'
-import Store from './Store'
-import PlayerRecap from './Player'
-import FortniteNews from './FortniteNews'
+import Store from './Store/Store'
+import PlayerRecap from '../Fortnite/Player/Player'
+import FortniteNews from './Home/FortniteNews'
 import { Route, Switch } from 'react-router-dom'
 import axios from 'axios'
 
@@ -12,7 +12,6 @@ import './Fortnite.css'
 
 class Fortnite extends Component {
   state = {
-    blogList: [],
     brNews: [],
     stwNews: [],
     top10Wins: [],
@@ -27,9 +26,8 @@ class Fortnite extends Component {
   }
 
   componentDidMount = () => {
-    document.querySelector('.nav-wrapper').style.display = 'none'
+    document.querySelector('.nav-wrapper').style.transform = 'translateY(-100%)'
     this.fetcher('news', 'brNews')
-    this.fetcher('patchNotes', 'blogList')
     this.fetcher('leaderboards', 'top10Wins', { window: 'top_10_wins' })
     this.fetcher('leaderboards', 'top10Kills', { window: 'top_10_kills' })
     this.fetcher('store', 'store')
@@ -39,6 +37,8 @@ class Fortnite extends Component {
 
   componentWillUnmount = () => {
     document.querySelector('.nav-wrapper').style.display = 'block'
+    document.querySelector('.nav-wrapper').style.transform = 'translateY(0)'
+
   }
   
   stateSetter = (data, stateKey) => (
@@ -72,7 +72,7 @@ class Fortnite extends Component {
         <FortniteNav />
           <Switch>
             <Route exact path={`${match.url}/`} render={() => 
-              <FortniteNews brNews={this.state.brNews} blogList={this.state.blogList} />
+              <FortniteNews brNews={this.state.brNews} />
             }/>
             <Route exact path={`${match.url}/leaderboards`} render={() => 
               <Leaderboards top10Wins={this.state.top10Wins} top10Kills={this.state.top10Kills} />

@@ -9,7 +9,7 @@
       padding-left: .5rem; }
     #add-item-form input:last-of-type {
       border-radius: 5px;
-      box-shadow: 2px 2px 2px 2px #999;
+      box-shadow: 2px 2px 5px 0px #2e1f3180;
       transition: background 120ms ease-out, color 120ms ease-out, box-shadow 50ms ease-out; }
       #add-item-form input:last-of-type:active {
         box-shadow: 1px 1px 2px #999; }

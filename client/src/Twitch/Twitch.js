@@ -4,7 +4,7 @@ import SearchController from './SearchController/SearchController';
 import TwitchSearchBar from './TwitchSearchBar/TwitchSearchBar';
 import TwitchPlayer from './TwitchPlayer/TwitchPlayer';
 import axios from 'axios';
-import { twitchHeaders } from '../util/util';
+import { twitchHeaders } from '../utils/utils';
 
 import './Twitch.css';
 

@@ -1,49 +1,10 @@
-import React, { Component, Fragment } from 'react'
-import Container from '../components/Container/Container'
-import platformIcons from './platformIcons'
-
-const Totals = props => (
-  <div className="totals">
-    <h2>Totals</h2>
-
-    <div>
-      <h3>Wins</h3>
-      <p>{props.wins}</p>
-    </div>
-
-    <div>
-      <h3>Matches</h3>
-      <p>{props.matchesplayed}</p>
-    </div>
-
-    <div>
-      <h3>Winrate</h3>
-      <p>{props.winrate}%</p>
-    </div>
-
-    <div>
-      <h3>Kills</h3>
-      <p>{props.kills}</p>
-    </div>
-
-    <div>
-      <h3>K / D</h3>
-      <p>{props.kd}</p>
-    </div>
-
-    <div>
-      <h3>Score</h3>
-      <p>{props.score}</p>
-    </div>
-
-  </div>
-)
+import React from 'react'
 
 const Stats = props => (
   <div className="stats">
     <h2>Stats</h2>
 
-    <div className="kda">
+    <div className="kda gradient-bg">
       <h3>K / D</h3>
       <div className="kd-solo">
         <h3>Solo</h3>
@@ -59,7 +20,7 @@ const Stats = props => (
       </div>
     </div>
 
-    <div className="kills">
+    <div className="kills gradient-bg">
       <h3>Kills</h3>
       <div className="kills-solo">
         <h3>Solo</h3>
@@ -75,7 +36,7 @@ const Stats = props => (
       </div>
     </div>
 
-    <div className="matches">
+    <div className="matches gradient-bg">
       <h3>Matches</h3>
       <div className="matches-solo">
         <h3>Solo</h3>
@@ -91,7 +52,7 @@ const Stats = props => (
       </div>
     </div>
 
-    <div className="wins">
+    <div className="wins gradient-bg">
       <h3>Wins</h3>
       <div className="wins-solo">
         <h3>Solo</h3>
@@ -107,7 +68,7 @@ const Stats = props => (
       </div>
     </div>
 
-    <div className="winrate">
+    <div className="winrate gradient-bg">
       <h3>Winrate</h3>
       <div className="winrate-solo">
         <h3>Solo</h3>
@@ -123,7 +84,7 @@ const Stats = props => (
       </div>
     </div>
 
-    <div className="score">
+    <div className="score gradient-bg">
       <h3>Score</h3>
       <div className="score-solo">
         <h3>Solo</h3>
@@ -141,43 +102,4 @@ const Stats = props => (
   </div>
 )
 
-class PlayerRecap extends Component {
-  componentDidMount = () => {
-    const playerName = this.props.match.params.playerName
-    this.props.fetchPlayer(playerName)
-  }
-
-  UNSAFE_componentWillReceiveProps = nextProps => {
-    const playerName = nextProps.match.params.playerName
-
-    if (playerName !== this.props.match.params.playerName) {
-      this.props.fetchPlayer(playerName)
-    }
-  }
-  
-
-  render() {
-    const { playerData } = this.props
-    
-    return (
-      <div className="player-recap">
-        {/* {this.state.searchError && <h1>Player Not Found</h1>} */}
-      { 
-        Object.keys(playerData).length > 0 &&
-          <Fragment>
-            <div className="title">
-              <h1>{playerData.username}</h1>
-              <i className={platformIcons[playerData.platform]}></i>
-            </div>
-            <Container>
-              <Totals {...playerData.totals} />
-              <Stats {...playerData.stats} />
-            </Container>
-          </Fragment>
-      }
-      </div>
-    )
-  }
-}
-
-export default PlayerRecap
+export default Stats

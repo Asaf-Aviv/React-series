@@ -32,37 +32,26 @@
           justify-content: space-between; }
           #search-controller .controls-wrapper .game-controller .games-menu ul li {
             margin: .5rem;
-            text-align: center;
-            cursor: pointer;
-            word-break: break-word; }
-            #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper {
-              justify-content: center;
-              align-items: flex-start;
-              display: flex;
-              flex-flow: column wrap;
-              color: #fff;
-              font-size: .8rem; }
-              #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo {
-                overflow: hidden;
-                position: relative; }
-                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo::after {
-                  opacity: .4;
-                  padding: .5rem;
-                  top: 50%;
-                  left: 50%;
-                  height: 190px;
-                  width: 136px;
-                  transform: translate(-50%, -50%);
-                  position: absolute;
-                  content: '';
-                  background: #000;
-                  z-index: 3;
-                  transition: opacity 300ms ease-out; }
-                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo img {
-                  display: block;
-                  position: relative;
-                  transition: transform 300ms ease-out; }
-                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo:hover::after {
-                  opacity: 0; }
-                #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo:hover img {
-                  transform: scale(1.1); }
+            cursor: pointer; }
+            #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo {
+              overflow: hidden;
+              position: relative; }
+              #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo::after {
+                opacity: .4;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                content: '';
+                background: #000;
+                z-index: 3;
+                transition: opacity 300ms ease-out; }
+              #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo img {
+                display: block;
+                position: relative;
+                transition: transform 300ms ease-out; }
+              #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo:hover::after {
+                opacity: 0; }
+              #search-controller .controls-wrapper .game-controller .games-menu ul li .game-wrapper .logo:hover img {
+                transform: scale(1.1); }

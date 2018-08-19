@@ -1,6 +1,6 @@
 #todos-app {
   background: #9cfffb;
-  height: calc(100vh - 57.38px);
+  min-height: calc(100vh - 57.38px);
   color: #757575;
   display: flex;
   align-items: flex-start; }

@@ -33,24 +33,4 @@ const Leaderboards = props => (
   </Container>
 )
 
-// const WinsRow = props => (
-//   <a className="player-row" href={`/fortnite/player/${props.username}`}>
-//     <h3 className="rank">{props.rank}</h3>
-//     <i className={platformIcons[props.platform]} />
-//     <p className="username">{props.username}</p>
-//     <p className="wins">{props.wins}</p>
-//     <p className="matches">{props.matches}</p>
-//   </a>
-// )
-
-// const KillsRow = props => (
-//   <a className="player-row" href={`/fortnite/player/${props.username}`}>
-//     <h3 className="rank">{props.rank}</h3>
-//     <i className={platformIcons[props.platform]} />
-//     <p className="username">{props.username}</p>
-//     <p className="kills">{props.kills}</p>
-//     <p className="kd">{props.kd}</p>
-//   </a>
-// )
-
 export default Leaderboards

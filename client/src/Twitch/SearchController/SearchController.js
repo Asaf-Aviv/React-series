@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { twitchHeaders } from '../../util/util';
+import { twitchHeaders } from '../../utils/utils';
 
 import './SearchController.css';
 
@@ -10,12 +10,12 @@ class SearchController extends Component {
     menuIsOpen: false
   };
 
-  componentDidMount = () => (
+  componentDidMount = () => {
     axios('https://api.twitch.tv/kraken/games/top?limit=100', { ...twitchHeaders })
       .then(
         res => this.setState({ topGames: res.data.top })
       )
-  );
+  };
 
   toggleGamesMenu = () => (
     this.setState(

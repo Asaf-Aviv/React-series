@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const axios  = require('axios')
-const util   = require('../../util/util')
+const utils  = require('../../utils/utils')
 const qs     = require('querystring')
 
 const fortniteInstance = axios.create({
@@ -8,20 +8,14 @@ const fortniteInstance = axios.create({
   timeout: 3000,
   headers: {
     'Authorization': process.env.FORTNITE_KEY,
-    // 'content-type': 'multipart/form-data boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW',
     'X-Fortnite-API-Version': 'v1.1'
   }
 })
 
 router.get('/news', async (req, res) => {
   const { data } = await fortniteInstance.post('br_motd/get')
-  const brNews = util.removeDups(data.entries, 'title')
+  const brNews = utils.removeDups(data.entries, 'title')
   res.send(brNews)
-})
-
-router.get('/patchNotes', async (req, res) => {
-  const { data } = await fortniteInstance.post('patchnotes/get')
-  res.send(data.blogList)
 })
 
 router.get('/leaderboards', async (req, res) => {
@@ -44,9 +38,8 @@ router.get('/challenges', async (req, res) => {
   const challenges = data.challenges.map(week => week.entries)
   res.send(challenges)
 })
-//FIXME:
+
 router.get('/player/:playerName', async (req, res) => {
-  console.log('player request')
   const playerDetails = await fortniteInstance.post('users/id', qs.stringify({ username: req.params.playerName }))
 
   if (playerDetails.data.error) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Loader from '../Loader/Loader';
 import UserLogo from '../UserLogo/UserLogo';
 import axios from 'axios';
-import { twitchHeaders } from '../../util/util';
+import { twitchHeaders } from '../../utils/utils';
 import debounce from 'lodash.debounce';
 
 import './TwitchSearchBar.css';
@@ -21,9 +21,8 @@ const SearchResults = props => {
           </div>
         </div>
     )});
-  } else {
-    return <div style={{ textAlign: 'center', padding: '1rem' }}>User Not Found</div>;
   }
+  return <div style={{ textAlign: 'center', padding: '1rem' }}>User Not Found</div>;
 };
 
 class TwitchSearchBar extends Component {
