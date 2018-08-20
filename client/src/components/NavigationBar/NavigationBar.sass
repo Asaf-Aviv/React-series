@@ -6,30 +6,70 @@
   background: #fff
   box-shadow: 0 3px 5px rgba(107, 107, 107, 0.66)
   z-index: 500
-  transition: transform 300ms
-  ul
-    display: flex
-    li
-      a
-        text-transform: uppercase
-        letter-spacing: 0.1rem
-        font-weight: 500
-        position: relative
+  transition: transform 250ms
+  .hamburger
+    position: relative
+    cursor: pointer
+    width: 40px
+    height: 57.38px
+    @media(min-width: 769px)
+      display: none
+    span
+      position: absolute;
+      height: 2px;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-radius: 5px;
+      &:nth-child(1)
+        top: 13px
+      &:nth-child(2)
+        top: 28px
+      &:nth-child(3)
+        top: 43px
+  .drawer-container
+    @media(max-width: 768px)
+      position: fixed
+      display: flex
+      top: 0
+      left: 0
+      height: 100vh
+      width: 100vw
+      transform: translateX(-100%)
+      transition: transform 200ms ease-out
+    &.active
+      transform: translateX(0%)
+    .close-drawer
+      cursor: pointer
+      flex: 1
+      background: rgba(0, 0, 0, 0.2)
+    ul
+      display: flex
+      @media(max-width: 768px)
+        background: #fff
         display: block
-        padding: 1.2rem
-        &::before
-          position: absolute
-          content: ''
-          bottom: 0
-          left: 0
-          height: 4px
-          width: 100%
-          background: #8460c3
-          transition: transform 150ms ease-out
-          transform: scaleX(0)
-        &:hover
+        flex: 2
+      li
+        a
+          text-transform: uppercase
+          letter-spacing: 0.1rem
+          font-weight: 500
+          position: relative
+          display: block
+          padding: 1.2rem
           &::before
-            transform: scaleX(1)
-        &.active
-          &::before
-            transform: scaleX(1)
+            position: absolute
+            content: ''
+            bottom: 0
+            left: 0
+            height: 4px
+            width: 100%
+            background: #8460c3
+            transition: transform 150ms ease-out
+            transform: scaleX(0)
+          &:hover
+            &::before
+              transform: scaleX(1)
+          &.active
+            &::before
+              transform: scaleX(1)

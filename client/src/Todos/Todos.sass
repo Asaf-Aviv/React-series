@@ -4,13 +4,24 @@
   color: #757575
   display: flex
   align-items: flex-start
+  padding: 0 1rem;
+  .error-modal
+    position: fixed
+    top: 70px
+    right: 0
+    padding: 1.5rem
+    background: rgba(0, 0, 0, .75)
+    color: #fff
+    transform: translateX(100%)
+    &.active
+      animation: slideErrorModal 3000ms ease-in-out
   #todos-wrapper
     border-radius: 10px
     box-shadow: 0px 2px 3px 2px #666666
     flex-direction: column
     margin: auto
     width: 400px
-    padding: 2rem
+    padding: 2rem 1rem
     background: #f3f3f3
     border: 3px solid #8462c4
     #todos-header
@@ -20,3 +31,15 @@
         text-align: center
         margin-bottom: 1.5rem
         color: #898989
+
+@keyframes slideErrorModal
+  0%
+    transform: translateX(100%)
+  10%
+    transform: translateX(0%)
+  90%
+    transform: translateX(0%)
+  100%
+    transform: translateX(100%)
+
+

@@ -1,7 +1,14 @@
 #todos-list {
-  position: relative;
-  min-height: 50px; }
-  #todos-list ul li {
+  position: relative; }
+  #todos-list ul {
+    min-height: 50px;
+    max-height: 60vh;
+    overflow-x: hidden;
+    overflow-y: auto; }
+    @media (max-width: 599px) {
+      #todos-list ul {
+        max-height: 50vh; } }
+  #todos-list li {
     font-size: 1.3rem;
     padding: .8rem;
     margin-bottom: .5rem;
@@ -9,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     background: #ececec; }
-    #todos-list ul li span {
+    #todos-list li span {
       padding: .2rem;
       cursor: pointer;
       width: auto;
@@ -19,8 +26,8 @@
       background: #616161;
       box-shadow: 0px 1px 1px 1px #c5c5c5;
       transition: 150ms ease-out; }
-      #todos-list ul li span:hover {
+      #todos-list li span:hover {
         background: #383838;
         color: #fff; }
-      #todos-list ul li span:active {
+      #todos-list li span:active {
         box-shadow: none; }

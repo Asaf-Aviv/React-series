@@ -9,27 +9,34 @@ class NavigationBar extends Component {
     super();
 
     this.state = {
-      collapsed: true
+      isOpen: false
     };
   }
 
-  toggleNavbar = () => {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
-  }
+  openNav = () => this.setState({ isOpen: true });
   
+  closeDrawer = () => this.setState({ isOpen: false });
+
+  handleClick = () => this.setState({ isOpen: false });
+
   render() {
     return (
       <nav className="nav-wrapper">
         <Container>
-          <ul>
-            <li><NavLink exact to="/">Home</NavLink></li>
-            <li><NavLink to="/website">Website</NavLink></li>
-            <li><NavLink to="/twitch">Twitch</NavLink></li>
-            <li><NavLink to="/todos">Todos</NavLink></li>
-            <li><NavLink to="/fortnite">Fortnite</NavLink></li>
-          </ul>
+          <div className="hamburger" onClick={this.openNav}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div className={`${this.state.isOpen ? "active" : ""} drawer-container`}>
+            <ul>
+              <li><NavLink onClick={this.handleClick} exact to="/">Home</NavLink></li>
+              <li><NavLink onClick={this.handleClick} to="/twitch">Twitch</NavLink></li>
+              <li><NavLink onClick={this.handleClick} to="/todos">Todos</NavLink></li>
+              <li><NavLink onClick={this.handleClick} to="/fortnite">Fortnite</NavLink></li>
+            </ul>
+            <div className="close-drawer" onClick={this.closeDrawer}></div>
+          </div>
         </Container>
       </nav>
     );

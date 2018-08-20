@@ -1,29 +1,11 @@
 import React, { Component } from 'react';
+import SearchResults from './SearchResults/SearchResults';
 import Loader from '../Loader/Loader';
-import UserLogo from '../UserLogo/UserLogo';
 import axios from 'axios';
 import { twitchHeaders } from '../../utils/utils';
 import debounce from 'lodash.debounce';
 
 import './TwitchSearchBar.css';
-
-const SearchResults = props => {
-  if (props.users.length) {
-    return props.users.map(user => {
-      return (
-        <div className="user-wrapper" onClick={() => props.selectStream(user.display_name)} title={user.description} key={user.id}>
-          <UserLogo logoSrc={user.profile_image_url} displayName={user.display_name} />
-          <div className="name">{user.display_name}</div>
-          <div className="views">
-            <i className="far fa-eye" title="Channel Views">
-              <span>{user.view_count.toLocaleString()}</span>
-            </i>
-          </div>
-        </div>
-    )});
-  }
-  return <div style={{ textAlign: 'center', padding: '1rem' }}>User Not Found</div>;
-};
 
 class TwitchSearchBar extends Component {
   constructor(props) {
@@ -34,17 +16,17 @@ class TwitchSearchBar extends Component {
       users: []
     };
 
-    this.searchUser = debounce(this.searchUser, 200);
+    this.searchUser = debounce(this.searchUser, 200, { 'leading': true });
   }
   
   searchUser = username => {
     this.setState({ isLoading: true, usernameInput: username })
-      axios(`https://api.twitch.tv/helix/users?login=${username}`, { ...twitchHeaders })
-      .catch(console.log)
+
+    axios(`https://api.twitch.tv/helix/users?login=${username}`, { ...twitchHeaders })
       .then(res => {
-        console.log(res.data.data)
         this.setState({ users: res.data.data, isLoading: false });
-      });
+      })
+      .catch(err => console.log(err));
   };
 
   handleInputChange = e => {
@@ -57,14 +39,20 @@ class TwitchSearchBar extends Component {
     this.setState({ usernameInput: '' });
   }
 
+  handleKeyPress = e => {
+    if (e.keyCode === 13) {
+      this.openChannel(this.state.usernameInput)
+    }
+  }
+
   render() {
-    console.log(this.props)
     return (
       <div className="searchbar-wrapper">
         <div className="searchbar">
           <div className="results-wrapper">
             <input type="text" 
-              onChange={this.handleInputChange} 
+              onChange={this.handleInputChange}
+              onKeyDown={this.handleKeyPress}
               value={this.state.usernameInput} 
               placeholder="Search"
             />

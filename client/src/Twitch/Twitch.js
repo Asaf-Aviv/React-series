@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
-import StreamersList from './StreamersList/StreamersList';
-import SearchController from './SearchController/SearchController';
-import TwitchSearchBar from './TwitchSearchBar/TwitchSearchBar';
-import TwitchPlayer from './TwitchPlayer/TwitchPlayer';
-import axios from 'axios';
-import { twitchHeaders } from '../utils/utils';
+import React, { Component } from 'react'
+import StreamersList from './StreamersList/StreamersList'
+import SearchController from './SearchController/SearchController'
+import TwitchSearchBar from './TwitchSearchBar/TwitchSearchBar'
+import TwitchPlayer from './TwitchPlayer/TwitchPlayer'
+import axios from 'axios'
+import { twitchHeaders } from '../utils/utils'
 
-import './Twitch.css';
+import './Twitch.css'
+
+const colorNav = () => {
+  const nav = document.querySelector('.nav-wrapper')
+  const navLinks = document.getElementsByTagName('a')
+  nav.style.boxShadow = 'none'
+  nav.style.backgroundColor = '#412852';
+  [...navLinks].map(link => link.style.color = '#ff008d')
+}
 
 class Twitch extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       loadingList: false,
       selectedGame: null,
@@ -18,15 +26,11 @@ class Twitch extends Component {
       streamersList: [],
       channelsDetails: [],
       selectedStream: ''
-    };
+    }
   }
   
   componentDidMount() {
-    const nav = document.querySelector('.nav-wrapper');
-    const navLinks = document.getElementsByTagName('a');
-    nav.style.boxShadow = 'none';
-    nav.style.backgroundColor = '#412852';
-    [...navLinks].map(link => link.style.color = '#ff008d');
+    colorNav()
   }
 
   selectStream = channelName => {
@@ -36,35 +40,34 @@ class Twitch extends Component {
   }
 
   updateGame = game => {
-    if (!this.state.selectedGame || game._id !== this.state.selectedGame._id ) {
+    if (!this.state.selectedGame || game._id !== this.state.selectedGame._id) {
       this.setState({ selectedGame: game }, () => {
-        this.updateStreamersList(this.state.selectedGame._id);
-      });
+        this.updateStreamersList(this.state.selectedGame._id)
+      })
     }
   }
 
   fetchChannels = streamersList => {
     const queryString = streamersList.map(s => s.user_id).join(',')
 
-    return axios(`https://api.twitch.tv/kraken/streams/?channel=${queryString}`, {...twitchHeaders})
+    return axios(`https://api.twitch.tv/kraken/streams/?channel=${queryString}`, { ...twitchHeaders })
       .then(res => res.data.streams)
   }
 
   getStreamersList = (gameId, pagination=null) => {
-    const paginationQuery = pagination ? `&after=${pagination}` : '';
+    const paginationQuery = pagination ? `&after=${pagination}` : ''
 
-    return axios(`https://api.twitch.tv/helix/streams?game_id=${gameId}${paginationQuery}`, {...twitchHeaders})
+    return axios(`https://api.twitch.tv/helix/streams?game_id=${gameId}${paginationQuery}`, { ...twitchHeaders })
       .then(res => res)
   }
 
   updateStreamersList = gameId => {
     this.setState({ loadingList: true })
-    console.log('updating list')
 
     this.getStreamersList(gameId)
       .then(res => {
-        const streamersList = res.data.data;
-        const loadMoreStreamersQuery = res.data.pagination.cursor;
+        const streamersList = res.data.data
+        const loadMoreStreamersQuery = res.data.pagination.cursor
 
         this.fetchChannels(streamersList)
           .then(channelsDetails => {
@@ -73,9 +76,9 @@ class Twitch extends Component {
               loadMoreStreamersQuery,
               channelsDetails,
               loadingList: false 
-            });
-          });
-      });
+            })
+          })
+      })
   }
 
   loadMoreStreamers = pagination => {
@@ -84,17 +87,23 @@ class Twitch extends Component {
 
     this.getStreamersList(gameId, pagination)
       .then(res => {
-        const loadedStreamersList = res.data.data;
+        const loadedStreamersList = res.data.data
         const loadMoreStreamersQuery = res.data.pagination.cursor
+
         this.fetchChannels(loadedStreamersList)
           .then(loadedChannelsDetails => {
-            this.setState(prevState => ({
-              streamersList: [...prevState.streamersList, ...loadedStreamersList],
-              loadMoreStreamersQuery,
-              channelsDetails: [...prevState.channelsDetails, ...loadedChannelsDetails],
-              loadingList: false 
-            }));
-          });
+            this.setState(prevState => {
+              const newStreamersList = [...prevState.streamersList, ...loadedStreamersList].filter((a, b) => a.user_id !== b.user_id)
+              const newchannelsDetails = [...prevState.channelsDetails, ...loadedChannelsDetails].filter((a, b) => a._id !== b._id)
+
+              return {
+                streamersList: newStreamersList,
+                loadMoreStreamersQuery,
+                channelsDetails: newchannelsDetails,
+                loadingList: false 
+              }
+            })
+          })
       })
   }
 
@@ -118,8 +127,8 @@ class Twitch extends Component {
           />
         </div>
       </div>
-    );
+    )
   }
 } 
 
-export default Twitch;
+export default Twitch

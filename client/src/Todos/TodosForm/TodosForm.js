@@ -12,9 +12,9 @@ class TodosForm extends Component {
   };
 
   handleSubmit = e => {
+    e.preventDefault();
     this.props.addItem(this.state.itemInput);
     this.setState({ itemInput: '' });
-    e.preventDefault();
   };
 
   render() {

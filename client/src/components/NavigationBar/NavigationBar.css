@@ -6,17 +6,59 @@
   background: #fff;
   box-shadow: 0 3px 5px rgba(107, 107, 107, 0.66);
   z-index: 500;
-  transition: transform 300ms; }
-  .nav-wrapper ul {
+  transition: transform 250ms; }
+  .nav-wrapper .hamburger {
+    position: relative;
+    cursor: pointer;
+    width: 40px;
+    height: 57.38px; }
+    @media (min-width: 769px) {
+      .nav-wrapper .hamburger {
+        display: none; } }
+    .nav-wrapper .hamburger span {
+      position: absolute;
+      height: 2px;
+      left: 0;
+      width: 100%;
+      background: #000;
+      border-radius: 5px; }
+      .nav-wrapper .hamburger span:nth-child(1) {
+        top: 13px; }
+      .nav-wrapper .hamburger span:nth-child(2) {
+        top: 28px; }
+      .nav-wrapper .hamburger span:nth-child(3) {
+        top: 43px; }
+  @media (max-width: 768px) {
+    .nav-wrapper .drawer-container {
+      position: fixed;
+      display: flex;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      transform: translateX(-100%);
+      transition: transform 200ms ease-out; } }
+  .nav-wrapper .drawer-container.active {
+    transform: translateX(0%); }
+  .nav-wrapper .drawer-container .close-drawer {
+    cursor: pointer;
+    flex: 1;
+    background: rgba(0, 0, 0, 0.2); }
+  .nav-wrapper .drawer-container ul {
     display: flex; }
-    .nav-wrapper ul li a {
+    @media (max-width: 768px) {
+      .nav-wrapper .drawer-container ul {
+        background: #fff;
+        display: block;
+        flex: 2; } }
+    .nav-wrapper .drawer-container ul li a {
       text-transform: uppercase;
       letter-spacing: 0.1rem;
       font-weight: 500;
       position: relative;
       display: block;
       padding: 1.2rem; }
-      .nav-wrapper ul li a::before {
+      .nav-wrapper .drawer-container ul li a::before {
         position: absolute;
         content: '';
         bottom: 0;
@@ -26,7 +68,7 @@
         background: #8460c3;
         transition: transform 150ms ease-out;
         transform: scaleX(0); }
-      .nav-wrapper ul li a:hover::before {
+      .nav-wrapper .drawer-container ul li a:hover::before {
         transform: scaleX(1); }
-      .nav-wrapper ul li a.active::before {
+      .nav-wrapper .drawer-container ul li a.active::before {
         transform: scaleX(1); }
