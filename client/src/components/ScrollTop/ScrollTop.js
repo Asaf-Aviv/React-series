@@ -27,9 +27,10 @@ class ScrollTop extends Component {
   }
 
   handleClick() {
-    var cosParameter = window.scrollY / 2,
+    let cosParameter = window.scrollY / 2,
       scrollCount = 0,
       oldTimestamp = performance.now();
+
     function step (newTimestamp) {
       scrollCount += Math.PI / (200 / (newTimestamp - oldTimestamp));
       if (scrollCount >= Math.PI) window.scrollTo(0, 0);

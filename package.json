@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && yarn start",
+    "build": "cd client && yarn build",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
@@ -12,12 +13,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "dotenv": "^6.0.0",
     "express": "^4.16.2",
     "mongoose": "^5.2.7",
     "querystring": "^0.2.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.0"
+    "concurrently": "^3.5.0",
+    "dotenv": "^6.0.0"
   }
 }

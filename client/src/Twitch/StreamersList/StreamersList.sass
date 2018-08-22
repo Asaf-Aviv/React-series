@@ -7,9 +7,10 @@
 
 #streamers-side-bar
   position: relative
-  cursor: pointer
   border-right: 1px solid #ff008d6b
   flex-basis: 300px
+  @media(max-width: 900px)
+    flex-basis: 65px
   .load-more-btn
     cursor: pointer
     font-weight: bold
@@ -20,6 +21,8 @@
     background: #271832
     border: 3px solid #ff008d
     text-transform: uppercase
+    @media(max-width: 900px)
+      font-size: .9rem
     &:hover
       background: #171421
   ul
@@ -49,11 +52,15 @@
           right: 10px
           color: #3dff00
           font-size: .5rem
+          @media(max-width: 900px)
+            display: none
         .info
           padding-left: .5rem
           display: flex
           flex-direction: column
           flex: 1
+          @media(max-width: 900px)
+            display: none
           .name
             color: #acacac
             font-weight: bold

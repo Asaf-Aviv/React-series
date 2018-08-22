@@ -5,11 +5,18 @@
   background: #432751
   border: 1px solid #34293a
 
+@keyframes jump
+  0% 100%
+    transform: translateY(0%)
+  50%
+    transform: translateY(-45%)
+
 #search-controller
   position: relative
   height: 220px
   background: #261e41
-  border-top: 1px solid #ff008d6b
+  @media(max-width: 768px)
+    height: 150px
   .controls-wrapper
     display: flex
     height: 100%
@@ -17,6 +24,18 @@
       padding: 1rem
       .selected-game
         cursor: pointer
+        height: 100%
+        > img
+          height: 100%
+      .game-pointer
+        position: absolute
+        width: 48px
+        height: 48px
+        top: 30%
+        left: 50px
+        animation: jump 1500ms infinite cubic-bezier(0.54, 0.24, 0.18, 0.91)
+        @media(max-width: 768px)
+          top: 40%
       .games-menu
         overflow-y: scroll
         background: rgba(0,0,0,0.5)
@@ -25,14 +44,24 @@
         position: fixed
         left: 300px
         top: 58.38px
+        transition: transform 200ms
+        transform: translateX(100%)
+        @media(max-width: 900px)
+          left: 65px
+          width: calc(100vw - 65px)
+        @media(max-width: 768px)
+          height: calc(100vh - (150px + 57.38px))
+        &.active
+          transform: translateX(0%)
         ul
           display: flex
           flex-wrap: wrap
-          justify-content: space-between
+          justify-content: space-around
           li
             margin: .5rem
-            cursor: pointer
             .game-wrapper
+              cursor: pointer
+              border: 1px solid #6e0e44
               .logo
                 overflow: hidden
                 position: relative
@@ -51,6 +80,12 @@
                   display: block
                   position: relative
                   transition: transform 300ms ease-out
+                  @media(max-width: 900px)
+                    height: 150px
+                  @media(max-width: 768px)
+                    height: 120px
+                  @media(max-width: 600px)
+                    height: 100px
                 &:hover
                   &::after
                     opacity: 0

@@ -10,10 +10,10 @@ import './Twitch.css'
 
 const colorNav = () => {
   const nav = document.querySelector('.nav-wrapper')
-  const navLinks = document.getElementsByTagName('a')
   nav.style.boxShadow = 'none'
   nav.style.backgroundColor = '#412852';
-  [...navLinks].map(link => link.style.color = '#ff008d')
+  document.querySelectorAll('.nav-wrapper a').forEach(link => link.style.color = '#00ffe7')
+  document.querySelector('.drawer-container ul').style.backgroundColor = '#412852'
 }
 
 class Twitch extends Component {
@@ -28,21 +28,26 @@ class Twitch extends Component {
       selectedStream: ''
     }
   }
-  
-  componentDidMount() {
+
+  componentDidMount = () => {
     colorNav()
+  }
+
+  componentWillUnmount = () => {
+    document.querySelector('.drawer-container ul').style.backgroundColor = '#fff'
   }
 
   selectStream = channelName => {
     if (!this.state.selectedStream || channelName !== this.state.selectedStream) {
-      this.setState({selectedStream: channelName})
+      this.setState({ selectedStream: channelName })
     }
   }
 
-  updateGame = game => {
+  selectGame = game => {
     if (!this.state.selectedGame || game._id !== this.state.selectedGame._id) {
       this.setState({ selectedGame: game }, () => {
         this.updateStreamersList(this.state.selectedGame._id)
+        document.querySelector('#streamers-side-bar > ul').scrollTop = 0
       })
     }
   }
@@ -54,7 +59,7 @@ class Twitch extends Component {
       .then(res => res.data.streams)
   }
 
-  getStreamersList = (gameId, pagination=null) => {
+  getStreamersList = (gameId, pagination = null) => {
     const paginationQuery = pagination ? `&after=${pagination}` : ''
 
     return axios(`https://api.twitch.tv/helix/streams?game_id=${gameId}${paginationQuery}`, { ...twitchHeaders })
@@ -71,11 +76,11 @@ class Twitch extends Component {
 
         this.fetchChannels(streamersList)
           .then(channelsDetails => {
-            this.setState({ 
+            this.setState({
               streamersList,
               loadMoreStreamersQuery,
               channelsDetails,
-              loadingList: false 
+              loadingList: false
             })
           })
       })
@@ -100,7 +105,7 @@ class Twitch extends Component {
                 streamersList: newStreamersList,
                 loadMoreStreamersQuery,
                 channelsDetails: newchannelsDetails,
-                loadingList: false 
+                loadingList: false
               }
             })
           })
@@ -110,7 +115,7 @@ class Twitch extends Component {
   render() {
     return (
       <div id="twitch-wrapper" className="d-flex">
-        <StreamersList 
+        <StreamersList
           streamersList={this.state.streamersList}
           loadMorePagination={this.state.loadMoreStreamersQuery}
           channelsDetails={this.state.channelsDetails}
@@ -119,16 +124,16 @@ class Twitch extends Component {
           selectStream={this.selectStream}
         />
         <div id="main-column-wrapper">
-          <TwitchSearchBar selectStream={this.selectStream}/>
-          <TwitchPlayer selectedStream={this.state.selectedStream}/>
-          <SearchController 
-            selectedGame={this.state.selectedGame} 
-            updateGame={this.updateGame} 
+          <TwitchSearchBar selectStream={this.selectStream} />
+          <TwitchPlayer selectedStream={this.state.selectedStream} />
+          <SearchController
+            selectedGame={this.state.selectedGame}
+            selectGame={this.selectGame}
           />
         </div>
       </div>
     )
   }
-} 
+}
 
 export default Twitch

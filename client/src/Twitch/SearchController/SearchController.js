@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import handIcon from '../../icons/hand.svg';
 import { twitchHeaders } from '../../utils/utils';
-
 import './SearchController.css';
 
 class SearchController extends Component {
@@ -11,11 +11,16 @@ class SearchController extends Component {
   };
 
   componentDidMount = () => {
-    axios('https://api.twitch.tv/kraken/games/top?limit=100', { ...twitchHeaders })
-      .then(
-        res => this.setState({ topGames: res.data.top })
-      )
+    this.getTopGames();
   };
+
+  getTopGames = () => {
+    axios('https://api.twitch.tv/kraken/games/top?limit=100', { ...twitchHeaders })
+      .then(res => this.setState({
+        topGames: res.data.top
+      })
+      )
+  }
 
   toggleGamesMenu = () => (
     this.setState(
@@ -24,7 +29,7 @@ class SearchController extends Component {
   );
 
   selectGameHandler = game => {
-    this.props.updateGame(game);
+    this.props.selectGame(game);
     this.setState({ menuIsOpen: false });
   }
 
@@ -36,13 +41,13 @@ class SearchController extends Component {
             <div className="selected-game" onClick={this.toggleGamesMenu}>
               {
                 this.props.selectedGame
-                  ? <img src={this.props.selectedGame.box.medium} alt={this.props.selectedGame.name}/>
-                  : <div style={{color: '#ff008d'}}>SELECT GAME</div>
+                  ? <img src={this.props.selectedGame.box.medium} alt={this.props.selectedGame.name} />
+                  : <div style={{ color: "#00ffe7" }}>SELECT GAME <img className="game-pointer" src={handIcon} alt="hand" /> </div>
               }
             </div>
-            <div className="games-menu" style={{display: this.state.menuIsOpen ? 'block' : 'none'}}>
+            <div className={`games-menu ${this.state.menuIsOpen ? 'active' : ''}`}>
               <ul>
-                {this.state.topGames.map(game => 
+                {this.state.topGames.map(game =>
                   <li key={game.game.name} title={game.game.name} onClick={() => this.selectGameHandler(game.game)}>
                     <div className="game-wrapper">
                       <div className="logo">
