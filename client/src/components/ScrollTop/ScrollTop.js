@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Icon from '@material-ui/core/Icon';
+import arrowUpIcon from '../../icons/arrowUp.svg';
 import throttle from 'lodash.throttle';
 
 import './ScrollTop.css';
@@ -45,7 +45,7 @@ class ScrollTop extends Component {
         className="br-5"
         onClick={this.handleClick}
       >
-        <Icon>keyboard_arrow_up</Icon>
+        <img src={arrowUpIcon} alt="arrow up" />
       </div>
     );
   }

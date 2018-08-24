@@ -7,26 +7,6 @@
   box-shadow: 0 3px 5px rgba(107, 107, 107, 0.66)
   z-index: 500
   transition: transform 250ms
-  .hamburger
-    position: relative
-    cursor: pointer
-    width: 40px
-    height: 57.38px
-    @media(min-width: 769px)
-      display: none
-    span
-      position: absolute
-      height: 2px
-      left: 0
-      width: 100%
-      background: #00ffe7
-      border-radius: 5px
-      &:nth-child(1)
-        top: 16px
-      &:nth-child(2)
-        top: 28px
-      &:nth-child(3)
-        top: 40px
   .drawer-container
     @media(max-width: 768px)
       position: fixed
@@ -49,8 +29,10 @@
         background: #fff
         display: block
         flex: 2
+        padding-top: 15vh
       li
         a
+          font-weight: 500
           text-transform: uppercase
           letter-spacing: 0.1rem
           position: relative

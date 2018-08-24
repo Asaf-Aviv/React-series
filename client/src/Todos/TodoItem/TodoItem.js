@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from '@material-ui/core/Icon';
 
 const TodoItem = ({ deleteItem, todo }) => {
   const handleDelete = () => {
@@ -9,7 +8,7 @@ const TodoItem = ({ deleteItem, todo }) => {
   return (
     <li>
       {todo.todoItem}
-      <Icon onClick={handleDelete} fontSize="inherit">close</Icon>
+      <span onClick={handleDelete}>&#9747;</span>
     </li>
   );
 };

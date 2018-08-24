@@ -1,0 +1,20 @@
+.hamburger
+  position: relative
+  cursor: pointer
+  width: 40px
+  height: 57.38px
+  @media(min-width: 769px)
+    display: none
+  span
+    position: absolute
+    height: 2px
+    left: 0
+    width: 100%
+    background: #00ffe7
+    border-radius: 5px
+    &:nth-child(1)
+      top: 16px
+    &:nth-child(2)
+      top: 28px
+    &:nth-child(3)
+      top: 40px

@@ -1,10 +1,9 @@
 #fortnite-app
   h1, h2, h3, h4, h5, h6
     font-family: Luckiest Guy
-    font-family: Bangers
     text-transform: uppercase
     letter-spacing: .15rem
-  
+
 #fortnite-app  
   color: #fff
   background: linear-gradient(180deg,#210d34 0,#210d34 50%,#2f1a5a)
@@ -23,48 +22,87 @@
     z-index: 10
     border-bottom: 1px solid #515151
     transition: transform 300ms
-    ul
+    .container
       display: flex
-      .back
-        margin-left: auto
+    .hamburger
+      span
+        background: #fff200
+    .drawer-container
+      display: flex
+      @media(max-width: 768px)
+        position: fixed
+        top: 0
+        left: 0
+        height: 100vh
+        width: 100vw
+        transform: translateX(-100%)
+        transition: transform 200ms cubic-bezier(0.13,-0.01, 0.2, 1)
+      &.active
+        transform: translateX(0%)
+      .close-drawer
+        cursor: pointer
+        flex: 1
+        background: rgba(0, 0, 0, 0.2)
+        @media(min-width: 769px)
+          flex: 0
+      ul
         display: flex
-        align-items: center
-        a
-          padding: 0 !important
-          img
-            height: 24px
-      li:not(.back)
-        a
-          position: relative
+        @media(max-width: 768px)
           display: block
-          padding: 1.2rem
-          font-weight: 600
-          letter-spacing: 0.1rem
-          color: #ccc
-          &.active
-            color: #fff
+          flex: 2
+          padding-top: 15vh
+        li
+          &.back
+            display: flex
+            align-items: center
+            @media(min-width: 769px)
+              margin-left: 2rem
+            a
+              padding: 0rem
+              img
+                height: 24px
+            @media(max-width: 768px)
+              a
+                padding: 1.2rem
+          &:not(.back)
+            a
+              @media(min-width: 769px)
+                &:hover
+                  color: #fff
+                  &::before
+                    height: 5px
+          a
+            position: relative
+            display: block
+            padding: 1.2rem
+            font-weight: 600
+            letter-spacing: 0.1rem
+            color: #ccc
+            &.active
+              color: #fff
+              &::before
+                height: 5px
+              @media(max-width: 768px)
+                &::before
+                  width: 4px
+                  height: 80%
+                  bottom: 10%
             &::before
-              height: 5px 
-          &:hover
-            color: #fff
-            &::before
-              height: 5px
-          &::before
-            background: #ff0
-            content: "";
-            display: block;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0;
-            z-index: -1;
-            transition: height .2s ease-in-out;
+              background: #ff0
+              content: ""
+              display: block
+              position: absolute
+              bottom: 0
+              left: 0
+              width: 100%
+              height: 0
+              @media(min-width: 769px)
+                transition: height .2s ease-in-out
 
 .search-bar
-  margin-left: auto
-  align-items: center
+  margin: auto
   display: flex
+  align-items: center
   form
     display: flex
     input
@@ -121,7 +159,10 @@
       text-align: center
       h3
         height: 50px
+        margin-top: auto
         color: #fff200
+      img
+        width: 100%
       p
         max-width: 220px
         margin: 0 auto
@@ -245,9 +286,10 @@
 
 @media (max-width: 419px)
   .top-10
-    font-size: 16px !important
+    font-size: 14px !important
 
 .top-10
+  padding-top: 5rem
   font-size: 18px
   display: flex
   justify-content: space-around
@@ -276,6 +318,7 @@
         &:nth-of-type(5)
           flex-basis: 66px
     .title
+      text-align: center
       letter-spacing: 4px !important
       padding-left: .5rem
       color: #fffd00

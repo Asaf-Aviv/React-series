@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Container from '../Container/Container';
+import Hamburger from './Hamburger/Hamburger';
 import { NavLink } from 'react-router-dom';
 
 import './NavigationBar.css';
+
 
 class NavigationBar extends Component {
   state = {
@@ -19,11 +21,7 @@ class NavigationBar extends Component {
     return (
       <nav className="nav-wrapper">
         <Container>
-          <div className="hamburger" onClick={this.openNav}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
+          <Hamburger handleClick={this.openNav} />
           <div className={`${this.state.isOpen ? "active" : ""} drawer-container`}>
             <ul>
               <li><NavLink onClick={this.handleClick} exact to="/">Home</NavLink></li>

@@ -6,7 +6,7 @@ class FortniteSearchBar extends Component {
   state = {
     playerName: ''
   };
-  
+
   handleChange = e => (
     this.setState({ playerName: e.target.value })
   );

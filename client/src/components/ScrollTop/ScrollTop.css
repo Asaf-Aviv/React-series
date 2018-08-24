@@ -1,6 +1,7 @@
 #scroll-top {
   opacity: 0.5;
   cursor: pointer;
+  padding: .55rem;
   position: fixed;
   height: 48px;
   width: 48px;
@@ -10,5 +11,5 @@
   transition: 150ms ease-out; }
   #scroll-top:hover {
     opacity: 1; }
-  #scroll-top span {
-    font-size: 3rem; }
+  #scroll-top img {
+    width: 100%; }

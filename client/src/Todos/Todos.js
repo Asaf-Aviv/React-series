@@ -9,11 +9,11 @@ import './Todos.css';
 
 const colorNavbar = () => {
   const nav = document.querySelector('.nav-wrapper');
-  const navLinks = document.getElementsByTagName('a');
   nav.style.boxShadow = '0 3px 5px rgba(107, 107, 107, 0.66)';
-  nav.style.backgroundColor = '#fff';
-  [...navLinks].map(link => link.style.color = '#656565');
-}
+  nav.style.backgroundColor = '#10343c';
+  document.querySelectorAll('.nav-wrapper a').forEach(link => link.style.color = '#2fdce8');
+  document.querySelector('.drawer-container > ul').style.backgroundColor = '#10343c';
+};
 
 class Todos extends Component {
   state = {

@@ -1,6 +1,5 @@
 #fortnite-app h1, #fortnite-app h2, #fortnite-app h3, #fortnite-app h4, #fortnite-app h5, #fortnite-app h6 {
   font-family: Luckiest Guy;
-  font-family: Bangers;
   text-transform: uppercase;
   letter-spacing: .15rem; }
 
@@ -22,47 +21,88 @@
     z-index: 10;
     border-bottom: 1px solid #515151;
     transition: transform 300ms; }
-    #fortnite-app #fortnite-nav ul {
+    #fortnite-app #fortnite-nav .container {
       display: flex; }
-      #fortnite-app #fortnite-nav ul .back {
-        margin-left: auto;
-        display: flex;
-        align-items: center; }
-        #fortnite-app #fortnite-nav ul .back a {
-          padding: 0 !important; }
-          #fortnite-app #fortnite-nav ul .back a img {
-            height: 24px; }
-      #fortnite-app #fortnite-nav ul li:not(.back) a {
-        position: relative;
-        display: block;
-        padding: 1.2rem;
-        font-weight: 600;
-        letter-spacing: 0.1rem;
-        color: #ccc; }
-        #fortnite-app #fortnite-nav ul li:not(.back) a.active {
-          color: #fff; }
-          #fortnite-app #fortnite-nav ul li:not(.back) a.active::before {
-            height: 5px; }
-        #fortnite-app #fortnite-nav ul li:not(.back) a:hover {
-          color: #fff; }
-          #fortnite-app #fortnite-nav ul li:not(.back) a:hover::before {
-            height: 5px; }
-        #fortnite-app #fortnite-nav ul li:not(.back) a::before {
-          background: #ff0;
-          content: "";
-          display: block;
-          position: absolute;
-          bottom: 0;
+    #fortnite-app #fortnite-nav .hamburger span {
+      background: #fff200; }
+    #fortnite-app #fortnite-nav .drawer-container {
+      display: flex; }
+      @media (max-width: 768px) {
+        #fortnite-app #fortnite-nav .drawer-container {
+          position: fixed;
+          top: 0;
           left: 0;
-          width: 100%;
-          height: 0;
-          z-index: -1;
-          transition: height .2s ease-in-out; }
+          height: 100vh;
+          width: 100vw;
+          transform: translateX(-100%);
+          transition: transform 200ms cubic-bezier(0.13, -0.01, 0.2, 1); } }
+      #fortnite-app #fortnite-nav .drawer-container.active {
+        transform: translateX(0%); }
+      #fortnite-app #fortnite-nav .drawer-container .close-drawer {
+        cursor: pointer;
+        flex: 1;
+        background: rgba(0, 0, 0, 0.2); }
+        @media (min-width: 769px) {
+          #fortnite-app #fortnite-nav .drawer-container .close-drawer {
+            flex: 0; } }
+      #fortnite-app #fortnite-nav .drawer-container ul {
+        display: flex; }
+        @media (max-width: 768px) {
+          #fortnite-app #fortnite-nav .drawer-container ul {
+            display: block;
+            flex: 2;
+            padding-top: 15vh; } }
+        #fortnite-app #fortnite-nav .drawer-container ul li.back {
+          display: flex;
+          align-items: center; }
+          @media (min-width: 769px) {
+            #fortnite-app #fortnite-nav .drawer-container ul li.back {
+              margin-left: 2rem; } }
+          #fortnite-app #fortnite-nav .drawer-container ul li.back a {
+            padding: 0rem; }
+            #fortnite-app #fortnite-nav .drawer-container ul li.back a img {
+              height: 24px; }
+          @media (max-width: 768px) {
+            #fortnite-app #fortnite-nav .drawer-container ul li.back a {
+              padding: 1.2rem; } }
+        @media (min-width: 769px) {
+          #fortnite-app #fortnite-nav .drawer-container ul li:not(.back) a:hover {
+            color: #fff; }
+            #fortnite-app #fortnite-nav .drawer-container ul li:not(.back) a:hover::before {
+              height: 5px; } }
+        #fortnite-app #fortnite-nav .drawer-container ul li a {
+          position: relative;
+          display: block;
+          padding: 1.2rem;
+          font-weight: 600;
+          letter-spacing: 0.1rem;
+          color: #ccc; }
+          #fortnite-app #fortnite-nav .drawer-container ul li a.active {
+            color: #fff; }
+            #fortnite-app #fortnite-nav .drawer-container ul li a.active::before {
+              height: 5px; }
+            @media (max-width: 768px) {
+              #fortnite-app #fortnite-nav .drawer-container ul li a.active::before {
+                width: 4px;
+                height: 80%;
+                bottom: 10%; } }
+          #fortnite-app #fortnite-nav .drawer-container ul li a::before {
+            background: #ff0;
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 0; }
+            @media (min-width: 769px) {
+              #fortnite-app #fortnite-nav .drawer-container ul li a::before {
+                transition: height .2s ease-in-out; } }
 
 .search-bar {
-  margin-left: auto;
-  align-items: center;
-  display: flex; }
+  margin: auto;
+  display: flex;
+  align-items: center; }
   .search-bar form {
     display: flex; }
     .search-bar form input {
@@ -118,7 +158,10 @@
     text-align: center; }
     .fortnite-news .main-news .news-card h3 {
       height: 50px;
+      margin-top: auto;
       color: #fff200; }
+    .fortnite-news .main-news .news-card img {
+      width: 100%; }
     .fortnite-news .main-news .news-card p {
       max-width: 220px;
       margin: 0 auto; }
@@ -241,9 +284,10 @@
 
 @media (max-width: 419px) {
   .top-10 {
-    font-size: 16px !important; } }
+    font-size: 14px !important; } }
 
 .top-10 {
+  padding-top: 5rem;
   font-size: 18px;
   display: flex;
   justify-content: space-around; }
@@ -272,6 +316,7 @@
         .top-10 > div .head span:nth-of-type(5) {
           flex-basis: 66px; }
     .top-10 > div .title {
+      text-align: center;
       letter-spacing: 4px !important;
       padding-left: .5rem;
       color: #fffd00;
