@@ -27,36 +27,40 @@ class Todos extends Component {
     this.fetchItems();
   };
 
-  fetchItems = () => {
+  fetchItems = async () => {
     this.setState({ isLoading: true });
-
-    axios.get('/api/todos')
-      .then(res => this.setState({ todos: res.data, isLoading: false }))
-      .catch(err => this.errorSetter(err.response.data));
+    try {
+      const { data:todosList } = await axios.get('/api/todos');
+      this.setState({ todos: todosList, isLoading: false });
+    } catch(err) {
+      this.errorSetter(err.response.data)
+    }
   };
 
-  deleteItem = todoItem => {
+  deleteItem = async todoItem => {
     this.setState({ isLoading: true });
+    try {
+      const { data:deletedTodo }= await axios.delete(`/api/todos/${todoItem._id}`);
+      this.setState(prevState => ({
+        todos: prevState.todos.filter(todo => todo._id !== deletedTodo._id)
+      }),
+      () => this.clearLoading());
+    } catch (err) {
+      this.errorSetter(err.response.data)
+    }
+  }
 
-    axios.delete(`/api/todos/${todoItem._id}`)
-      .then(res => {
-        this.setState(prevState => ({
-          todos: prevState.todos.filter(todo => todo._id !== res.data._id)
-        }), () => this.clearLoading());
-      })
-      .catch(err => this.errorSetter(err.response.data));
-  };
-
-  addItem = todoItem => {
+  addItem = async todoItem => {
     this.setState({ isLoading: true });
-
-    axios.post('/api/todos', { todoItem })
-      .then(res => {
-        this.setState(prevState => ({
-          todos: [...prevState.todos, res.data]
-        }), () => this.clearLoading());
-      })
-      .catch(err => this.errorSetter(err.response.data));
+    try {
+      const { data:newDoto } = await axios.post('/api/todos', { todoItem });
+      this.setState(prevState => ({
+        todos: [...prevState.todos, newDoto]
+      }),
+      () => this.clearLoading())
+    } catch (err) {
+      this.errorSetter(err.response.data);
+    }
   };
 
   clearLoading = () => (
@@ -70,7 +74,8 @@ class Todos extends Component {
     this.setState({
       errorMessage,
       isLoading: false
-    }, () => this.flashError())
+    },
+    () => this.flashError())
   );
 
   flashError = () => {

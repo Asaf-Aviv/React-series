@@ -1,12 +1,14 @@
 require('dotenv').config()
 const express     = require('express');
 const path        = require('path');
+const morgan      = require('morgan');
 const mongoose    = require('mongoose');
 const todosAPI    = require('./api/todos/todosAPI');
 const fortniteAPI = require('./api/fortnite/fortniteAPI');
 const port        = process.env.PORT || 5000;
 const app         = express();
 
+app.use(morgan('dev'));
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
@@ -18,10 +20,10 @@ app.use('/api/todos', todosAPI);
 app.use('/api/fortnite', fortniteAPI);
 
 if (process.env.NODE_ENV === 'production') {
-  console.log('production mode')
+  console.log('production env')
   app.use(express.static(path.join(__dirname, 'client/build')));
 
-  app.get('*', function(req, res) {
+  app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }

@@ -2,13 +2,13 @@ const express  = require('express');
 const router   = express.Router();
 const TodoItem = require('../../models/Todo');
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   TodoItem.find()
     .then(doc => res.send(doc))
-    .catch(() => res.status(500).send('Something went wrong.'));
+    .catch(() => next());
 });
 
-router.post('/', (req, res) => {
+router.post('/', (req, res, next) => {
   const todoItem = req.body.todoItem;
   
   if (!todoItem) {
@@ -18,10 +18,10 @@ router.post('/', (req, res) => {
   new TodoItem({ todoItem })
     .save()
     .then(doc => res.send(doc))
-    .catch(() => res.status(500).send('Something went wrong.'));
+    .catch(() => next());
 });
 
-router.delete('/:itemId', (req, res) => {
+router.delete('/:itemId', (req, res, next) => {
   TodoItem.findByIdAndRemove(req.params.itemId)
     .then((doc, err) => {
       if (!doc) {
@@ -29,7 +29,11 @@ router.delete('/:itemId', (req, res) => {
       }
       res.send(doc);
     })
-    .catch(() => res.status(500).send('Something went wrong.'));
+    .catch(() => next());
+});
+
+router.use((req, res) => {
+  res.status(500).send('Something went wrong.')
 });
 
 module.exports = router;

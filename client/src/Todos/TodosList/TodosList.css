@@ -17,6 +17,8 @@
     align-items: center;
     justify-content: space-between;
     background: #ececec; }
+    #todos-list li:last-of-type {
+      margin-bottom: 0; }
     #todos-list li span {
       padding: .2rem .4rem;
       cursor: pointer;
