@@ -5,13 +5,9 @@ import { NavLink } from 'react-router-dom';
 import './NavigationBar.css';
 
 class NavigationBar extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      isOpen: false
-    };
-  }
+  state = {
+    isOpen: false
+  };
 
   openNav = () => this.setState({ isOpen: true });
   

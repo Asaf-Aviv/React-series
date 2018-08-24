@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const vbucksImage = 'https://fortnite-public-files.theapinetwork.com/fortnite-vbucks-icon.png'
+const vbucksImage = 'https://fortnite-public-files.theapinetwork.com/fortnite-vbucks-icon.png';
 
 const StoreItem = props => (
   <div className="store-item gradient-bg green-border">
@@ -15,12 +15,12 @@ const StoreItem = props => (
       <span>{props.cost}</span>
     </div>
   </div>
-)
+);
 
 StoreItem.propTypes = {
   name: PropTypes.string.isRequired,
   item: PropTypes.object.isRequired,
   cost: PropTypes.string.isRequired
-}
+};
 
-export default StoreItem
+export default StoreItem;

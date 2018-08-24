@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react'
-import NavigationBar from './components/NavigationBar/NavigationBar'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import PageNotFound from './components/404/404'
-import ScrollTop from './components/ScrollTop/ScrollTop'
-import Home from '../src/Home/Home'
-import Twitch from '../src/Twitch/Twitch'
-import Todos from '../src/Todos/Todos'
-import Fortnite from '../src/Fortnite/Fortnite'
+import React, { Fragment } from 'react';
+import NavigationBar from './components/NavigationBar/NavigationBar';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import PageNotFound from './components/404/404';
+import ScrollTop from './components/ScrollTop/ScrollTop';
+import Home from '../src/Home/Home';
+import Twitch from '../src/Twitch/Twitch';
+import Todos from '../src/Todos/Todos';
+import Fortnite from '../src/Fortnite/Fortnite';
 
-import './App.css'
+import './App.css';
 
 const App = () => (
   <Router>
@@ -24,6 +24,6 @@ const App = () => (
       <ScrollTop />
     </Fragment>
   </Router>
-)
+);
 
-export default App
+export default App;

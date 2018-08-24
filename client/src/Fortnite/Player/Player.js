@@ -1,25 +1,25 @@
-import React, { Component, Fragment } from 'react'
-import Totals from './Totals/Totals'
-import Stats from './Stats/Stats'
-import Container from '../../components/Container/Container'
-import platformIcons from '../platformIcons'
+import React, { Component, Fragment } from 'react';
+import Totals from './Totals/Totals';
+import Stats from './Stats/Stats';
+import Container from '../../components/Container/Container';
+import platformIcons from '../platformIcons';
 
 class PlayerRecap extends Component {
   componentDidMount = () => {
-    const playerName = this.props.match.params.playerName
-    this.props.fetchPlayer(playerName)
+    const { playerName } = this.props.match.params;
+    this.props.fetchPlayer(playerName);
   }
 
   UNSAFE_componentWillReceiveProps = nextProps => {
-    const playerName = nextProps.match.params.playerName
+    const { playerName } = nextProps.match.params;
 
     if (playerName !== this.props.match.params.playerName) {
-      this.props.fetchPlayer(playerName)
+      this.props.fetchPlayer(playerName);
     }
   }
 
   render() {
-    const { playerData } = this.props
+    const { playerData } = this.props;
     
     return (
       <div className="player-recap">
@@ -38,8 +38,8 @@ class PlayerRecap extends Component {
           </Fragment>
       }
       </div>
-    )
+    );
   }
 }
 
-export default PlayerRecap
+export default PlayerRecap;

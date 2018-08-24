@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Totals = props => (
   <div className="totals">
@@ -29,7 +29,7 @@ const Totals = props => (
       <p>{props.score}</p>
     </div>
   </div>
-)
+);
 
 Totals.propTypes = {
   wins: PropTypes.number.isRequired,
@@ -38,6 +38,6 @@ Totals.propTypes = {
   kills: PropTypes.number.isRequired,
   kd: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
-}
+};
 
-export default Totals
+export default Totals;

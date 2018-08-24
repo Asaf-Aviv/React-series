@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const starSrc = 'https://fortnite-public-files.theapinetwork.com/fortnite-br-challenges-star.png'
+const starSrc = 'https://fortnite-public-files.theapinetwork.com/fortnite-br-challenges-star.png';
 
 const ChallengeCard = props => (
   <div className="challenge-card">
@@ -17,13 +17,13 @@ const ChallengeCard = props => (
       <h3>0 / {props.total}</h3>
     </div>
   </div>
-)
+);
 
 ChallengeCard.propTypes = {
   stars: PropTypes.number.isRequired,
   challenge: PropTypes.string.isRequired,
   difficulty: PropTypes.string.isRequired,
   total: PropTypes.number.isRequired
-}
+};
 
-export default ChallengeCard
+export default ChallengeCard;

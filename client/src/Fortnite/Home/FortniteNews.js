@@ -1,7 +1,7 @@
-import React from 'react'
-import Container from '../../components/Container/Container'
-import PropTypes from 'prop-types'
-import { unix } from 'moment'
+import React from 'react';
+import Container from '../../components/Container/Container';
+import PropTypes from 'prop-types';
+import { unix } from 'moment';
 
 const NewsCard = ({ news }) => (
   <div className="news-card gradient-bg green-border">
@@ -10,7 +10,7 @@ const NewsCard = ({ news }) => (
     <h4>{unix(news.time).format('ll')}</h4>
     <p>{news.body}</p>
   </div>
-)
+);
 
 const FortniteNews = ({ brNews }) => (
   <Container>
@@ -22,10 +22,10 @@ const FortniteNews = ({ brNews }) => (
       </main>
     </div>
   </Container>
-)
+);
 
 FortniteNews.propTypes = {
   brNews: PropTypes.array.isRequired,
-}
+};
 
-export default FortniteNews
+export default FortniteNews;

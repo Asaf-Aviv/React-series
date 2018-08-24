@@ -1,11 +1,11 @@
 require('dotenv').config()
 const express     = require('express');
 const path        = require('path');
-const app         = express();
-const port        = process.env.PORT || 5000;
 const mongoose    = require('mongoose');
 const todosAPI    = require('./api/todos/todosAPI');
 const fortniteAPI = require('./api/fortnite/fortniteAPI');
+const port        = process.env.PORT || 5000;
+const app         = express();
 
 app.use(express.json());
 
@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
 
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-  })
+  });
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

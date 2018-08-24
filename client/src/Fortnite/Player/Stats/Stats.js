@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Stats = props => (
   <div className="stats">
@@ -100,6 +100,6 @@ const Stats = props => (
       </div>
     </div>
   </div>
-)
+);
 
-export default Stats
+export default Stats;

@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 const TableHead = ({ wins }) => (
   <Fragment>
@@ -12,10 +12,10 @@ const TableHead = ({ wins }) => (
       <span>{wins ? "Matches" : "K / D"}</span>
     </div>
   </Fragment>
-)
+);
 
 TableHead.propTypes = {
   wins: PropTypes.bool
-}
+};
 
-export default TableHead
+export default TableHead;

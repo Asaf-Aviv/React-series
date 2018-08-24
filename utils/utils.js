@@ -3,7 +3,7 @@ function removeDups(obj, uniqueKey) {
     if (uniques.every(objToFIlter => objToFIlter[uniqueKey] !== curr[uniqueKey])) {
       uniques.push(curr);
     }
-    return uniques
+    return uniques;
   }, []);
 }
 

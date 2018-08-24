@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import Container from '../../components/Container/Container'
-import TableHead from  './TableHead/TableHead'
-import TableRow from './TableRow/TableRow'
-import Loader from '../../components/Loader/Loader'
+import React, { Fragment } from 'react';
+import Container from '../../components/Container/Container';
+import TableHead from  './TableHead/TableHead';
+import TableRow from './TableRow/TableRow';
+import Loader from '../../components/Loader/Loader';
 
 const Leaderboards = props => (
   <Container>
@@ -31,6 +31,6 @@ const Leaderboards = props => (
       </div>
     </div>
   </Container>
-)
+);
 
-export default Leaderboards
+export default Leaderboards;

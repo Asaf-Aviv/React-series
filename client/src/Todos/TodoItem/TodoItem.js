@@ -12,6 +12,6 @@ const TodoItem = ({ deleteItem, todo }) => {
       <Icon onClick={handleDelete} fontSize="inherit">close</Icon>
     </li>
   );
-}
+};
 
 export default TodoItem;

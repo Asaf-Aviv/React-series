@@ -16,27 +16,24 @@ const colorNavbar = () => {
 }
 
 class Todos extends Component {
-  constructor() {
-    super();
-    
-    this.state = {
-      todos: [],
-      isLoading: false,
-      errorMessage: ''
-    };
-  }
+  state = {
+    todos: [],
+    isLoading: false,
+    errorMessage: ''
+  };
   
-  componentDidMount() {
+  componentDidMount = () => {
     colorNavbar();
     this.fetchItems();
-  }
+  };
 
   fetchItems = () => {
     this.setState({ isLoading: true });
+
     axios.get('/api/todos')
       .then(res => this.setState({ todos: res.data, isLoading: false }))
       .catch(err => this.errorSetter(err.response.data));
-  }
+  };
 
   deleteItem = todoItem => {
     this.setState({ isLoading: true });
@@ -48,7 +45,7 @@ class Todos extends Component {
         }), () => this.clearLoading());
       })
       .catch(err => this.errorSetter(err.response.data));
-  }
+  };
 
   addItem = todoItem => {
     this.setState({ isLoading: true });
@@ -62,24 +59,24 @@ class Todos extends Component {
       .catch(err => this.errorSetter(err.response.data));
   };
 
-  clearLoading = () => {
+  clearLoading = () => (
     this.setState({
       errorMessage: '',
       isLoading: false
-    });
-  };
+    })
+  );
 
-  errorSetter = errorMessage => {
+  errorSetter = errorMessage => (
     this.setState({
       errorMessage,
       isLoading: false
-    }, () => this.flashError());
-  };
+    }, () => this.flashError())
+  );
 
   flashError = () => {
     const errorModal = document.querySelector('.error-modal');
-    errorModal.classList.remove('active')
-    setTimeout(() => errorModal.classList.add('active'), 20)
+    errorModal.classList.remove('active');
+    setTimeout(() => errorModal.classList.add('active'), 20);
   };
 
   render() {
@@ -92,8 +89,8 @@ class Todos extends Component {
         </div>
         <ErrorModal errorMessage={this.state.errorMessage} />
       </div>
-    )
+    );
   }
 }
 
-export default Todos
+export default Todos;

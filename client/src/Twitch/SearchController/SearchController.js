@@ -18,9 +18,8 @@ class SearchController extends Component {
     axios('https://api.twitch.tv/kraken/games/top?limit=100', { ...twitchHeaders })
       .then(res => this.setState({
         topGames: res.data.top
-      })
-      )
-  }
+      }));
+  };
 
   toggleGamesMenu = () => (
     this.setState(

@@ -20,7 +20,7 @@ class TwitchSearchBar extends Component {
   }
   
   searchUser = username => {
-    this.setState({ isLoading: true, usernameInput: username })
+    this.setState({ isLoading: true, usernameInput: username });
 
     axios(`https://api.twitch.tv/helix/users?login=${username}`, { ...twitchHeaders })
       .then(res => {
@@ -31,19 +31,19 @@ class TwitchSearchBar extends Component {
 
   handleInputChange = e => {
     this.setState({ usernameInput: e.target.value });
-    if (e.target.value) this.searchUser(e.target.value)
-  }
+    if (e.target.value) this.searchUser(e.target.value);
+  };
 
   openChannel = channelName => {
-    this.props.selectStream(channelName)
+    this.props.selectStream(channelName);
     this.setState({ usernameInput: '' });
-  }
+  };
 
   handleKeyPress = e => {
     if (e.keyCode === 13) {
-      this.openChannel(this.state.usernameInput)
+      this.openChannel(this.state.usernameInput);
     }
-  }
+  };
 
   render() {
     return (

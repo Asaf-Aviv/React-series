@@ -1,23 +1,20 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import Icon from '@material-ui/core/Icon'
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import Icon from '@material-ui/core/Icon';
 
 class FortniteSearchBar extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      playerName: ''
-    }
-  }
+  state = {
+    playerName: ''
+  };
   
   handleChange = e => (
     this.setState({ playerName: e.target.value })
-  )
+  );
 
   handleSubmit = e => {
-    e.preventDefault()
-    this.props.history.push(`/fortnite/player/${this.state.playerName}`)
-  }
+    e.preventDefault();
+    this.props.history.push(`/fortnite/player/${this.state.playerName}`);
+  };
 
   render() {
     return (
@@ -33,7 +30,8 @@ class FortniteSearchBar extends Component {
           </button>
         </form>
       </div>
-    )
+    );
   }
 }
-export default withRouter(FortniteSearchBar)
+
+export default withRouter(FortniteSearchBar);

@@ -5,28 +5,23 @@ import throttle from 'lodash.throttle';
 import './ScrollTop.css';
 
 class ScrollTop extends Component {
-  constructor() {
-    super();
-    this.state = {
-      show: 'none'
-    };
+  state = {
+    show: 'none'
+  };
 
-    this.handleScroll = this.handleScroll.bind(this)
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  componentDidMount() {
+  componentDidMount = () => {
     window.addEventListener('scroll', throttle(this.handleScroll, 200));
-  }
-  componentWillUnmount() {
-    window.removeEventListener('scroll', throttle(this.handleScroll, 200));
-  }
-  
-  handleScroll() {
-    window.scrollY > 450 ? this.setState({ show: 'block' }) : this.setState({ show: 'none' });
-  }
+  };
 
-  handleClick() {
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', throttle(this.handleScroll, 200));
+  };
+  
+  handleScroll= () => {
+    window.scrollY > 450 ? this.setState({ show: 'block' }) : this.setState({ show: 'none' });
+  };
+
+  handleClick = () => {
     let cosParameter = window.scrollY / 2,
       scrollCount = 0,
       oldTimestamp = performance.now();
@@ -40,7 +35,7 @@ class ScrollTop extends Component {
       window.requestAnimationFrame(step);
     }
     window.requestAnimationFrame(step);
-  }
+  };
 
   render() {
     return (
