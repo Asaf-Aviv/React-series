@@ -1,3 +1,22 @@
 #twitch-player
+  position: relative
   display: flex
   flex: 1
+  .close-btn
+    display: none
+    cursor: pointer
+    border: 0
+    border-radius: 50%
+    background: transparent
+    position: absolute
+    padding: .7rem
+    top: 0
+    right: 10px
+    width: 46px
+    height: 46px
+    z-index: 9999
+    &:hover
+      background: rgba(255, 255, 255, 0.1)
+    img
+      height: 100%
+      width: 100%

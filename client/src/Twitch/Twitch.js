@@ -107,6 +107,7 @@ class Twitch extends Component {
       height: '100%',
       theme: 'dark'
     });
+    document.querySelector('.close-btn').style.display = 'block';
   };
   
   
@@ -120,8 +121,10 @@ class Twitch extends Component {
     
     if (twitchPlayer) {
       twitchPlayer.parentNode.removeChild(twitchPlayer);
+      document.querySelector('.close-btn').style.display = 'none';
     }
   };
+
   stopLoading = () => this.setState({ loadingList: false});
   
   render() {
@@ -134,17 +137,17 @@ class Twitch extends Component {
           loadMore={this.loadMoreStreamers}
           isLoading={this.state.loadingList}
           selectStream={this.selectStream}
-          />
+        />
         <div id="main-column-wrapper">
           <TwitchSearchBar selectStream={this.selectStream} />
           <TwitchPlayer
             selectedStream={this.state.selectedStream}
             closeStream={this.closeStream}
-            />
+          />
           <GameController
             selectedGame={this.state.selectedGame}
             selectGame={this.selectGame}
-            />
+          />
         </div>
       </div>
     );

@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import closeIcon from '../../icons/close.svg';
 
 import './TwitchPlayer.css';
 
-class TwitchPlayer extends Component {
-
-  render() {
-    return <div id="twitch-player"><button onClick={this.props.closeStream}></button></div>;
-  }
-}
+const TwitchPlayer = ({ closeStream, showCloseButton }) => (
+  <div id="twitch-player">
+    <button className="close-btn" onClick={closeStream}>
+      <img src={closeIcon} alt="close" />
+    </button>
+  </div>
+);
   
 export default TwitchPlayer;

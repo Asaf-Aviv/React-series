@@ -4,7 +4,7 @@ import StreamInfo from './StreamInfo/StreamInfo';
 import UserLogo from '../../UserLogo/UserLogo';
 
 const StreamerCard = ({ channel, selectStream }) => (
-  <li key={channel._id} title={channel.channel.status} onClick={() => selectStream(channel.channel.name)}>
+  <li title={channel.channel.status} onClick={() => selectStream(channel.channel.name)}>
     <div className="streamer-wrapper">
       <Status viewers={channel.viewers}/>
       <UserLogo 

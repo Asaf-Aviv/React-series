@@ -10,14 +10,14 @@ const StreamersList = props => (
     { props.isLoading && <Loader /> }
     <ul>
       {props.channelsDetails.map((channel, i) =>
-        <StreamerCard 
+        <StreamerCard
+          key={channel._id}
           channel={channel}
           selectStream={props.selectStream}
         />
       )}
     </ul>
-    {
-      props.loadMorePagination &&
+    {props.loadMorePagination &&
       <LoadMoreButton
         loadMore={props.loadMore}
         loadMorePagination={props.loadMorePagination}
