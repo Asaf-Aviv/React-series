@@ -3,7 +3,8 @@ const router   = express.Router();
 const TodoItem = require('../../models/Todo');
 
 router.get('/', (req, res, next) => {
-  TodoItem.find()
+  TodoItem
+    .find()
     .then(doc => res.send(doc))
     .catch(() => next());
 });
@@ -33,7 +34,7 @@ router.delete('/:itemId', (req, res, next) => {
 });
 
 router.use((req, res) => {
-  res.status(500).send('Something went wrong.')
+  res.status(500).send('Something went wrong.');
 });
 
 module.exports = router;

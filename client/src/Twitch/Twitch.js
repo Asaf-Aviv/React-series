@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import StreamersList from './StreamersList/StreamersList';
-import SearchController from './SearchController/SearchController';
+import GameController from './GameController/GameController';
 import TwitchSearchBar from './TwitchSearchBar/TwitchSearchBar';
 import TwitchPlayer from './TwitchPlayer/TwitchPlayer';
 import axios from 'axios';
-import { twitchHeaders } from '../utils/utils';
+import { twitchHeaders, uniqueFrom } from '../utils/utils';
 
 import './Twitch.css';
 
@@ -18,28 +18,16 @@ const colorNav = () => {
 
 class Twitch extends Component {
   state = {
+    streamersList: [],
+    channelsDetails: [],
     loadingList: false,
     selectedGame: null,
     loadMoreStreamersQuery: null,
-    streamersList: [],
-    channelsDetails: [],
-    selectedStream: ''
+    selectedStream: null
   };
 
-  componentDidMount = () => {
-    colorNav();
-  };
-
-  componentWillUnmount = () => {
-    document.querySelector('.drawer-container ul').style.backgroundColor = '#fff';
-  };
-
-  selectStream = channelName => {
-    if (!this.state.selectedStream || channelName !== this.state.selectedStream) {
-      this.setState({ selectedStream: channelName });
-    }
-  };
-
+  componentDidMount = () => colorNav();
+  
   selectGame = game => {
     if (!this.state.selectedGame || game._id !== this.state.selectedGame._id) {
       this.setState({ selectedGame: game }, () => {
@@ -48,67 +36,94 @@ class Twitch extends Component {
       });
     }
   };
-
-  fetchChannels = streamersList => {
+  
+  getChannels = async streamersList => {
     const queryString = streamersList.map(s => s.user_id).join(',');
-
-    return axios(`https://api.twitch.tv/kraken/streams/?channel=${queryString}`, { ...twitchHeaders })
-      .then(res => res.data.streams);
+    
+    const { data } = await axios(`https://api.twitch.tv/kraken/streams/?channel=${queryString}`, twitchHeaders);
+    return data.streams;
   };
-
-  getStreamersList = (gameId, pagination = null) => {
+  
+  getStreamersList = async (gameId, pagination = '') => {
     const paginationQuery = pagination ? `&after=${pagination}` : '';
-
-    return axios(`https://api.twitch.tv/helix/streams?game_id=${gameId}${paginationQuery}`, { ...twitchHeaders })
-      .then(res => res)
+    
+    const { data } = await axios(`https://api.twitch.tv/helix/streams?game_id=${gameId}${paginationQuery}`, twitchHeaders);
+    const { data:streamersList } = data;
+    const loadMoreStreamersQuery = data.pagination.cursor;
+    
+    return [streamersList, loadMoreStreamersQuery];
   };
+  
+  updateStreamersList = async gameId => {
+    try {
+      this.setState({ loadingList: true });
+      
+      const [streamersList, loadMoreStreamersQuery] = await this.getStreamersList(gameId);
+      const channelsDetails = await this.getChannels(streamersList);
+      
+      this.setState({
+        streamersList,
+        loadMoreStreamersQuery,
+        channelsDetails,
+        loadingList: false
+      });
+    } catch(err) {
+      this.stopLoading();
+    }
+  };
+  
+  loadMoreStreamers = async pagination => {
+    try {
+      this.setState({ loadingList: true })
+      const gameId = this.state.selectedGame._id
+      
+      const [loadedStreamersList, loadMoreStreamersQuery] = await this.getStreamersList(gameId, pagination);
+      const loadedChannelsDetails = await this.getChannels(loadedStreamersList);
+      
+      this.setState(prevState => ({
+        streamersList: uniqueFrom([...prevState.streamersList, ...loadedStreamersList], 'user_id', 'left'),
+        channelsDetails: uniqueFrom([...prevState.channelsDetails, ...loadedChannelsDetails],'_id', 'right'),
+        loadMoreStreamersQuery,
+        loadingList: false
+      }));
+    } catch (err) {
+      this.stopLoading();
+    }
+  };
+  
+  selectStream = channelName => {
+    if (!this.state.selectedStream || this.state.selectedStream !== channelName) {
+      this.setState({ selectedStream: channelName });
+      this.embedPlayer(channelName);
+    }
+  };
+  
+  embedPlayer = channelName => {
+    this.removePlayer();
 
-  updateStreamersList = gameId => {
-    this.setState({ loadingList: true })
-
-    this.getStreamersList(gameId)
-      .then(res => {
-        const streamersList = res.data.data
-        const loadMoreStreamersQuery = res.data.pagination.cursor
-
-        this.fetchChannels(streamersList)
-          .then(channelsDetails => {
-            this.setState({
-              streamersList,
-              loadMoreStreamersQuery,
-              channelsDetails,
-              loadingList: false
-            })
-          })
-      })
-  }
-
-  loadMoreStreamers = pagination => {
-    this.setState({ loadingList: true })
-    const gameId = this.state.selectedGame._id
-
-    this.getStreamersList(gameId, pagination)
-      .then(res => {
-        const loadedStreamersList = res.data.data
-        const loadMoreStreamersQuery = res.data.pagination.cursor
-
-        this.fetchChannels(loadedStreamersList)
-          .then(loadedChannelsDetails => {
-            this.setState(prevState => {
-              const newStreamersList = [...prevState.streamersList, ...loadedStreamersList].filter((a, b) => a.user_id !== b.user_id);
-              const newchannelsDetails = [...prevState.channelsDetails, ...loadedChannelsDetails].filter((a, b) => a._id !== b._id);
-
-              return {
-                streamersList: newStreamersList,
-                loadMoreStreamersQuery,
-                channelsDetails: newchannelsDetails,
-                loadingList: false
-              };
-            })
-          })
-      })
-  }
-
+    new window.Twitch.Embed('twitch-player', {
+      channel: channelName,
+      width: '100%',
+      height: '100%',
+      theme: 'dark'
+    });
+  };
+  
+  
+  closeStream = () => {
+    this.setState({ selectedStream: null });
+    this.removePlayer();
+  };
+  
+  removePlayer = () => {
+    const twitchPlayer = document.querySelector('#twitch-player iframe');
+    
+    if (twitchPlayer) {
+      twitchPlayer.parentNode.removeChild(twitchPlayer);
+    }
+  };
+  stopLoading = () => this.setState({ loadingList: false});
+  
   render() {
     return (
       <div id="twitch-wrapper" className="d-flex">
@@ -119,14 +134,17 @@ class Twitch extends Component {
           loadMore={this.loadMoreStreamers}
           isLoading={this.state.loadingList}
           selectStream={this.selectStream}
-        />
+          />
         <div id="main-column-wrapper">
           <TwitchSearchBar selectStream={this.selectStream} />
-          <TwitchPlayer selectedStream={this.state.selectedStream} />
-          <SearchController
+          <TwitchPlayer
+            selectedStream={this.state.selectedStream}
+            closeStream={this.closeStream}
+            />
+          <GameController
             selectedGame={this.state.selectedGame}
             selectGame={this.selectGame}
-          />
+            />
         </div>
       </div>
     );

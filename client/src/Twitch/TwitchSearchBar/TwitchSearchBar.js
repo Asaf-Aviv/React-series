@@ -8,8 +8,8 @@ import debounce from 'lodash.debounce';
 import './TwitchSearchBar.css';
 
 class TwitchSearchBar extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       usernameInput: '',
       isLoading: false,
@@ -22,7 +22,7 @@ class TwitchSearchBar extends Component {
   searchUser = username => {
     this.setState({ isLoading: true, usernameInput: username });
 
-    axios(`https://api.twitch.tv/helix/users?login=${username}`, { ...twitchHeaders })
+    axios(`https://api.twitch.tv/helix/users?login=${username}`, twitchHeaders)
       .then(res => {
         this.setState({ users: res.data.data, isLoading: false });
       })

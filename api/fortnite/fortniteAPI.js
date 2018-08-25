@@ -40,15 +40,15 @@ router.get('/challenges', async (req, res) => {
 });
 
 router.get('/player/:playerName', async (req, res) => {
-  const playerDetails = await fortniteInstance.post('users/id', qs.stringify({ username: req.params.playerName }));
+  const { data:playerData } = await fortniteInstance.post('users/id', qs.stringify({ username: req.params.playerName }));
 
-  if (playerDetails.data.error) {
+  if (playerData.error) {
     return res.send(404);
   }
 
   const playerStats = await fortniteInstance.post('users/public/br_stats', qs.stringify({
-    user_id: playerDetails.data.uid,
-    platform: playerDetails.data.platforms[0],
+    user_id: playerData.uid,
+    platform: playerData.platforms[0],
     window: req.query.window || 'alltime'
   }));
 

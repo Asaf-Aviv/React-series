@@ -49,14 +49,21 @@
         position: relative;
         display: flex;
         padding: .5rem 0 .5rem .5rem; }
-        #streamers-side-bar ul li .streamer-wrapper i {
+        #streamers-side-bar ul li .streamer-wrapper .status {
           position: absolute;
-          top: 14px;
+          top: 9px;
           right: 10px;
-          color: #3dff00;
-          font-size: .5rem; }
+          color: #fff;
+          font-size: .8rem;
+          font-weight: 500;
+          display: flex;
+          align-items: center; }
+          #streamers-side-bar ul li .streamer-wrapper .status i {
+            margin-left: .5rem;
+            color: #3dff00;
+            font-size: .5rem; }
           @media (max-width: 900px) {
-            #streamers-side-bar ul li .streamer-wrapper i {
+            #streamers-side-bar ul li .streamer-wrapper .status {
               display: none; } }
         #streamers-side-bar ul li .streamer-wrapper .info {
           padding-left: .5rem;
@@ -67,14 +74,15 @@
             #streamers-side-bar ul li .streamer-wrapper .info {
               display: none; } }
           #streamers-side-bar ul li .streamer-wrapper .info .name {
-            color: #acacac;
-            font-weight: bold;
+            color: #d2d2d2;
+            font-weight: 500;
             letter-spacing: 1px;
             margin-bottom: .3rem; }
           #streamers-side-bar ul li .streamer-wrapper .info .game {
-            font-weight: 400;
-            font-size: .8rem;
-            color: #777777; }
+            font-weight: 500;
+            font-size: .72rem;
+            color: #777777;
+            letter-spacing: .6px; }
         #streamers-side-bar ul li .streamer-wrapper .popup {
           position: absolute;
           top: 0;

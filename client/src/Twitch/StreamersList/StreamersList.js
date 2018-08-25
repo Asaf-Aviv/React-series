@@ -1,6 +1,7 @@
 import React from 'react';
+import StreamerCard from './StreamerCard/StreamerCard';
+import LoadMoreButton from './LoadMoreButton/LoadMoreButton';
 import Loader from '../Loader/Loader';
-import UserLogo from '../UserLogo/UserLogo';
 
 import './StreamersList.css';
 
@@ -9,22 +10,18 @@ const StreamersList = props => (
     { props.isLoading && <Loader /> }
     <ul>
       {props.channelsDetails.map((channel, i) =>
-        <li key={channel._id} title={channel.channel.status} onClick={() => props.selectStream(channel.channel.name)}>
-          <div className="streamer-wrapper">
-            <i className="fas fa-circle" />
-            <UserLogo logoSrc={channel.channel.logo} displayName={channel.channel.display_name}
-            />
-            <div className="info">
-              <div className="name">{channel.channel.display_name}</div>
-              <div className="game">Streaming {channel.game} for {channel.viewers} viewers</div>
-            </div>
-          </div>
-        </li>
+        <StreamerCard 
+          channel={channel}
+          selectStream={props.selectStream}
+        />
       )}
     </ul>
     {
       props.loadMorePagination &&
-        <button className="load-more-btn" onClick={() => props.loadMore(props.loadMorePagination)}>Load More</button>
+      <LoadMoreButton
+        loadMore={props.loadMore}
+        loadMorePagination={props.loadMorePagination}
+      />
     }
   </div>
 );
