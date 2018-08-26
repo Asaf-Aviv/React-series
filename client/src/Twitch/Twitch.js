@@ -27,7 +27,7 @@ class Twitch extends Component {
   };
 
   componentDidMount = () => colorNav();
-  
+
   selectGame = game => {
     if (!this.state.selectedGame || game._id !== this.state.selectedGame._id) {
       this.setState({ selectedGame: game }, () => {
@@ -36,31 +36,31 @@ class Twitch extends Component {
       });
     }
   };
-  
+
   getChannels = async streamersList => {
     const queryString = streamersList.map(s => s.user_id).join(',');
-    
+
     const { data } = await axios(`https://api.twitch.tv/kraken/streams/?channel=${queryString}`, twitchHeaders);
     return data.streams;
   };
-  
+
   getStreamersList = async (gameId, pagination = '') => {
     const paginationQuery = pagination ? `&after=${pagination}` : '';
-    
+
     const { data } = await axios(`https://api.twitch.tv/helix/streams?game_id=${gameId}${paginationQuery}`, twitchHeaders);
     const { data:streamersList } = data;
     const loadMoreStreamersQuery = data.pagination.cursor;
-    
+
     return [streamersList, loadMoreStreamersQuery];
   };
-  
+
   updateStreamersList = async gameId => {
     try {
       this.setState({ loadingList: true });
-      
+
       const [streamersList, loadMoreStreamersQuery] = await this.getStreamersList(gameId);
       const channelsDetails = await this.getChannels(streamersList);
-      
+
       this.setState({
         streamersList,
         loadMoreStreamersQuery,
@@ -71,15 +71,15 @@ class Twitch extends Component {
       this.stopLoading();
     }
   };
-  
+
   loadMoreStreamers = async pagination => {
     try {
       this.setState({ loadingList: true })
       const gameId = this.state.selectedGame._id
-      
+
       const [loadedStreamersList, loadMoreStreamersQuery] = await this.getStreamersList(gameId, pagination);
       const loadedChannelsDetails = await this.getChannels(loadedStreamersList);
-      
+
       this.setState(prevState => ({
         streamersList: uniqueFrom([...prevState.streamersList, ...loadedStreamersList], 'user_id', 'left'),
         channelsDetails: uniqueFrom([...prevState.channelsDetails, ...loadedChannelsDetails],'_id', 'right'),
@@ -90,14 +90,14 @@ class Twitch extends Component {
       this.stopLoading();
     }
   };
-  
+
   selectStream = channelName => {
     if (!this.state.selectedStream || this.state.selectedStream !== channelName) {
       this.setState({ selectedStream: channelName });
       this.embedPlayer(channelName);
     }
   };
-  
+
   embedPlayer = channelName => {
     this.removePlayer();
 
@@ -109,16 +109,16 @@ class Twitch extends Component {
     });
     document.querySelector('.close-btn').style.display = 'block';
   };
-  
-  
+
+
   closeStream = () => {
     this.setState({ selectedStream: null });
     this.removePlayer();
   };
-  
+
   removePlayer = () => {
     const twitchPlayer = document.querySelector('#twitch-player iframe');
-    
+
     if (twitchPlayer) {
       twitchPlayer.parentNode.removeChild(twitchPlayer);
       document.querySelector('.close-btn').style.display = 'none';
@@ -126,7 +126,7 @@ class Twitch extends Component {
   };
 
   stopLoading = () => this.setState({ loadingList: false});
-  
+
   render() {
     return (
       <div id="twitch-wrapper" className="d-flex">
