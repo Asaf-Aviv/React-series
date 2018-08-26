@@ -15,7 +15,8 @@
 #search-controller {
   position: relative;
   height: 220px;
-  background: #261e41; }
+  background: #261e41;
+  border-top: 1px solid #6e0e44; }
   @media (max-width: 768px) {
     #search-controller {
       height: 150px; } }

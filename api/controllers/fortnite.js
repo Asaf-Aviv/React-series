@@ -20,7 +20,7 @@ exports.getNews = async (req, res, next) => {
   } catch (err) {
     next();
   }
-}
+};
 
 exports.getLeaderboards = async (req, res, next) => {
   try {
