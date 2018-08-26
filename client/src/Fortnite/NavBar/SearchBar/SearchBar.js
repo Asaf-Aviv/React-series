@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import Icon from '@material-ui/core/Icon';
+import searchIcon from '../../../icons/research.svg';
 
 class FortniteSearchBar extends Component {
   state = {
     playerName: ''
   };
 
-  handleChange = e => (
-    this.setState({ playerName: e.target.value })
-  );
+  handleChange = e => 
+    this.setState({ playerName: e.target.value });
+  
 
   handleSubmit = e => {
     e.preventDefault();
@@ -24,9 +24,10 @@ class FortniteSearchBar extends Component {
             type="text"
             onChange={this.handleChange}
             value={this.state.playerName}
-            placeholder="Search Player" />
+            placeholder="Search Player"
+          />
           <button>
-            <Icon>search</Icon>
+            <img src={searchIcon} alt="Search"/>
           </button>
         </form>
       </div>

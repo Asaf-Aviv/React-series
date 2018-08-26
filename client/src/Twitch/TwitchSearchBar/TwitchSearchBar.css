@@ -2,7 +2,7 @@
   border-bottom: 1px solid #ff008d6b;
   background: #171420; }
   .searchbar-wrapper .searchbar {
-    padding: .5rem;
+    padding: .45rem;
     display: flex;
     justify-content: center; }
     .searchbar-wrapper .searchbar .results-wrapper {

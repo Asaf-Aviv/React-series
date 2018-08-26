@@ -124,21 +124,18 @@
       justify-content: center;
       width: 37px;
       height: 35px;
-      background: #646464;
       cursor: pointer;
       border: 0;
       margin-left: 1px;
-      transition: background .2s ease-in-out; }
+      transition: background .2s ease-in-out;
+      padding: .3rem;
+      background: #646464; }
+      .search-bar form button img {
+        width: 100%; }
       .search-bar form button:focus {
         outline-color: #00ffe7; }
       .search-bar form button:hover {
         background: #292929; }
-        .search-bar form button:hover span {
-          color: #ff0; }
-      .search-bar form button span {
-        transition: color .2s ease-in-out;
-        color: #ccc;
-        font-size: 27px; }
 
 .gradient-bg {
   background: linear-gradient(180deg, #210d34 0, #210d34 50%, #2f1a5a); }
