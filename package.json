@@ -9,8 +9,7 @@
     "build": "cd client && yarn build",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
-    "prod": "set NODE_ENV=production&& node server",
-    "postinstall": "npm run build"
+    "prod": "set NODE_ENV=production&& node server"
   },
   "engines": {
     "npm": "6.1.0",
