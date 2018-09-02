@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 const Challenges = ({ challenges }) => (
   <div id="fortnite-challenges">
     <Container>
-      {challenges.map(week => week.map(challenge =>
-        <ChallengeCard key={challenge.challenge} {...challenge} />
-      ))}
+      {challenges.map(challenge =>
+        <ChallengeCard key={challenge.identifier} {...challenge} />
+      )}
     </Container>
   </div>
 );

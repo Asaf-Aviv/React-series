@@ -51,9 +51,9 @@ exports.getUpcomingItems = async (req, res, next) => {
 
 exports.getChallenges = async (req, res, next) => {
   try {
-    const { data } = await fortniteInstance.post('challenges/get', qs.stringify({ season: 'season4', language: 'en' }));
-    const challenges = data.challenges.map(week => week.entries);
-    res.send(challenges);
+    const { data } = await fortniteInstance.post('challenges/get', qs.stringify({ season: 'current', language: 'en' }));
+    const challenges = data.challenges.map(week => week.entries).filter(Boolean);
+    res.send(...challenges);
   } catch (err) {
     next();
   }

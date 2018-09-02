@@ -39,7 +39,7 @@ class Fortnite extends Component {
     document.querySelector('.nav-wrapper').style.display = 'block';
     document.querySelector('.nav-wrapper').style.transform = 'translateY(0)';
   };
-  
+
   stateSetter = (data, stateKey) => (
     this.setState({ [stateKey]: data })
   );
@@ -70,21 +70,36 @@ class Fortnite extends Component {
     return (
       <div id="fortnite-app">
         <FortniteNav />
+
           <Switch>
-            <Route exact path={`${match.url}/`} render={() => 
-              <FortniteNews brNews={this.state.brNews} />
+            <Route exact path={`${match.url}/`} render={() =>
+              <FortniteNews
+                brNews={this.state.brNews}
+              />
             }/>
-            <Route exact path={`${match.url}/leaderboards`} render={() => 
-              <Leaderboards top10Wins={this.state.top10Wins} top10Kills={this.state.top10Kills} />
+            <Route exact path={`${match.url}/leaderboards`} render={() =>
+              <Leaderboards
+                top10Wins={this.state.top10Wins}
+                top10Kills={this.state.top10Kills}
+              />
             }/>
-            <Route exact path={`${match.url}/challenges`} render={() => 
-              <Challenges challenges={this.state.challenges} />
+            <Route exact path={`${match.url}/challenges`} render={() =>
+              <Challenges
+                challenges={this.state.challenges}
+              />
             }/>
-            <Route exact path={`${match.url}/store`} render={() => 
-              <Store store={this.state.store} upcomingItems={this.state.upcomingItems} />
+            <Route exact path={`${match.url}/store`} render={() =>
+              <Store
+                store={this.state.store}
+                upcomingItems={this.state.upcomingItems}
+              />
             }/>
-            <Route exact path={`${match.url}/player/:playerName`} render={props => 
-              <PlayerRecap fetchPlayer={this.fetchPlayer} playerData={this.state.playerData} {...props} />
+            <Route exact path={`${match.url}/player/:playerName`} render={props =>
+              <PlayerRecap
+                fetchPlayer={this.fetchPlayer}
+                playerData={this.state.playerData}
+                {...props}
+              />
             }/>
             <Route render={() => <div>404 Page Not Found</div>} />
           </Switch>

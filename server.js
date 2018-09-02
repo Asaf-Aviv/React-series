@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express     = require('express');
 const path        = require('path');
 const morgan      = require('morgan');
@@ -20,7 +20,7 @@ app.use('/api/todos', todosAPI);
 app.use('/api/fortnite', fortniteAPI);
 
 if (process.env.NODE_ENV === 'production') {
-  console.log('production env')
+  console.log('production env');
   app.use(express.static(path.join(__dirname, 'client/build')));
 
   app.get('/*', function(req, res) {
